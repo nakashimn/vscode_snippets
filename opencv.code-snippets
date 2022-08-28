@@ -13,12 +13,25 @@
 			"cv2.cvtColor($1, cv2.COLOR_BGR2RGB)"
 		]
 	},
-	"cv2.mask": {
+	"shlink_image": {
 		"scope": "python",
-		"prefix": "mask",
+		"prefix": "def shlink_img",
 		"body": [
-			"mask = (${1:img}<threshold).astype(np.uint8)",
-			"img_masked = cv2.bitwise_and(${1:img}, ${1:img}, mask=mask)"
+			"def shlink_img(img, size=[640, 480]):",
+			"\theight, width = img.shape[:2]",
+			"\tratio = np.min([size[1] / height, size[0] / width])",
+			"\tif ratio >= 1.0:",
+			"\t\treturn img",
+			"\treturn cv2.resize(img, dsize=None, fx=ratio, fy=ratio)",
+		]
+	},
+	"mask_image": {
+		"scope": "python",
+		"prefix": "def mask_img",
+		"body": [
+			"def mask_img(img, threshold):",
+			"\tmask = (img<threshold).astype(np.uint8)",
+			"\treturn cv2.bitwise_and(img, img, mask=mask)",
 		]
 	}
 }
