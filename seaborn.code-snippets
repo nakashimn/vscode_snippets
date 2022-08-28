@@ -1,0 +1,23 @@
+{
+	"seaborn.heatmap": {
+		"scope": "python",
+		"prefix": ["sns.heatmap", "sns_heatmap", "heatmap"],
+		"body": [
+			"sns.heatmap(${TM_SELECTED_TEXT}$1, ax=axis, cmap=\"bwr\", square=True, annot=True)"
+		]
+	},
+	"seaborn.pairplot": {
+		"scope": "python",
+		"prefix": ["sns.pairplot", "sns_pairplot", "pairplot"],
+		"body": [
+			"sns.pairplot(${TM_SELECTED_TEXT}$1, ax=axis, diag_kind=\"kde\", plot_kws={\"alpha\":0.3, \"s\":50})"
+		]
+	},
+	"seaborn.jointplot": {
+		"scope": "python",
+		"prefix": ["sns.jointplot", "sns_jointplot", "jointplot"],
+		"body": [
+			"sns.jointplot($1, $2, ax=axis, kind=\"hex\")"
+		]
+	}
+}

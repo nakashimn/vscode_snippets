@@ -1,0 +1,42 @@
+{
+	"lightgbm classifier": {
+		"scope": "python",
+		"prefix": "lightgbm classifier",
+		"body": [
+			"lgbm_params = {",
+			"\t\"objective\": \"multiclass\",",
+			"\t\"boosting\": \"gbdt\",",
+			"\t\"num_class\": 2,",
+			"\t\"metric\": \"multi_logloss\",",
+			"\t\"num_iterations\": 1000,",
+			"\t\"learning_rate\": 0.1,",
+			"\t\"num_leaves\": 31,",
+			"\t\"max_depth\": 4,",
+			"\t\"min_data_in_leaf\": 20,",
+			"\t\"bagging_fraction\": 0.8,",
+			"\t\"bagging_freq\": 1,",
+			"\t\"feature_fraction\": 1.0,",
+			"\t\"lambda_l1\": 0.5,",
+			"\t\"lambda_l2\": 0.5,",
+			"\t\"early_stopping_round\": 50,",
+			"\t\"seed\": 57,",
+			"\t\"verbose\": -1",
+			"}",
+			"",
+			"dataset_train = lgb.Dataset(x_train, label=y_train)",
+			"dataset_val = lgb.Dataset(x_val, label=y_val)",
+			"model = lgb.train(",
+			"\tparams=lgbm_params,",
+			"\ttrain_set=dataset_train,",
+			"\tvalid_sets=dataset_val,",
+			"\tverbose_eval=50",
+			")",
+			"",
+			"model.save_model(\"model.lgb\")",
+			"",
+			"model = lgb.Booster(model_file=\"model.lgb\")",
+			"",
+			"pred = np.argmax(model.predict([x_val[0]]))"
+		]
+	}
+}

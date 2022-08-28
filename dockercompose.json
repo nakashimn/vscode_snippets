@@ -1,0 +1,87 @@
+{
+	"docker-compose": {
+		"prefix": "docker-compose",
+		"body": [
+			"version: '3'",
+			"services:",
+			"\t${1:name}:",
+			"\t\tbuild: ./${2:Dockerfile}",
+			"\t\tcontainer_name: ${1:name}",
+			"\t\thostname: ${1:name}",
+			"\t\tshm_size: '28gb'",
+			"\t\tvolumes:",
+			"\t\t\t- ./${3}:/${4:workspace}:cached",
+			"\t\tenvironment:",
+			"\t\t\tTZ: Asia/Tokyo",
+			"\t\ttty: true"
+		]
+	},
+	"docker-compose(GUI)": {
+		"prefix": "docker-compose(GUI)",
+		"body": [
+			"version: '3'",
+			"services:",
+			"\t${1:name}:",
+			"\t\tbuild: ./${2:Dockerfile}",
+			"\t\tcontainer_name: ${1:name}",
+			"\t\thostname: ${1:name}",
+			"\t\tshm_size: '28gb'",
+			"\t\tvolumes:",
+			"\t\t\t- ./${3}:/${4:workspace}:cached",
+			"\t\tenvironment:",
+			"\t\t\tTZ: Asia/Tokyo",
+			"\t\ttty: true",
+			"\t\tDISPLAY: host.docker.internal:0.0",
+			"\t\tPULSE_SERVER: tcp:host.docker.internal"
+		]
+	},
+	"docker-compose(NVIDIA)": {
+		"prefix": "docker-compose(NVIDIA)",
+		"body": [
+			"version: '3'",
+			"services:",
+			"\t${1:name}:",
+			"\t\tbuild: ./${2:Dockerfile}",
+			"\t\thostname: ${1:name}",
+			"\t\tshm_size: '28gb'",
+			"\t\tdeploy:",
+			"\t\t\tresources:",
+			"\t\t\t\treservations:",
+			"\t\t\t\t\tdevices:",
+			"\t\t\t\t\t - driver: nvidia",
+			"\t\t\t\t\t   capabilities: [\"gpu\"]",
+			"\t\tcontainer_name: ${1:name}",
+			"\t\tvolumes:",
+			"\t\t\t- ./${3}:/${4:workspace}:cached",
+			"\t\tenvironment:",
+			"\t\t\tTZ: Asia/Tokyo",
+			"\t\ttty: true"
+		]
+	},
+	"docker-compose(kaggle)": {
+		"prefix": "docker-compose(kaggle)",
+		"body": [
+			"version: '3'",
+			"services:",
+			"\t${1:name}:",
+			"\t\tbuild: ./${2:Dockerfile}",
+			"\t\thostname: ${1:name}",
+			"\t\tshm_size: '28gb'",
+			"\t\tdeploy:",
+			"\t\t\tresources:",
+			"\t\t\t\treservations:",
+			"\t\t\t\t\tdevices:",
+			"\t\t\t\t\t - driver: nvidia",
+			"\t\t\t\t\t   capabilities: [\"gpu\"]",
+			"\t\tcontainer_name: ${1:name}",
+			"\t\tvolumes:",
+			"\t\t\t- ./${3}:/${4:workspace}:cached",
+			"\t\tenvironment:",
+			"\t\t\tTZ: Asia/Tokyo",
+			"\t\t\tKAGGLE_USERNAME: ${KAGGLE_USERNAME}",
+			"\t\t\tKAGGLE_KEY: ${KAGGLE_KEY}",
+			"\t\t\tMLFLOW_TRACKING_URI: /workspace/log/mlruns/",
+			"\t\ttty: true"
+		]
+	}
+}

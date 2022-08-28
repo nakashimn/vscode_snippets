@@ -1,0 +1,37 @@
+{
+	"document.getElementById": {
+		"prefix": "getElementById",
+		"body": [
+			"document.getElementById(\"${1:id}\");"
+		]
+	},
+	"document.getElementById.innerHTML": {
+		"prefix": "innerHTML",
+		"body": [
+			"document.getElementById(\"${1:id}\").innerHTML = \"$2\";"
+		]
+	},
+	"function": {
+		"prefix": "function",
+		"body": [
+			"function ${1:FunctionName}(${2:args}){",
+			"$3",
+ 			"}"
+		]
+	},
+	"WebRTC": {
+		"prefix": "webrtc.StartCamera",
+		"body": [
+			"function StartCamera(){",
+			"\tnavigator.mediaDevices.getUserMedia({video:true})",
+			"\t.then(function(stream){",
+			"\t\tvideo.srcObject = stream;",
+			"\t})",
+			"\t.catch(function(error){",
+			"\t\tconsole.error('mediaDevice.getUserMedia() error:', error);",
+			"\t\treturn;",
+			"\t})",
+			"}"
+		]
+	}
+}

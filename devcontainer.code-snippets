@@ -1,0 +1,12 @@
+{
+	"vscode_extentions": {
+		"prefix": "vscode_extentions",
+		"body": [
+			"\"ms-python.python\",",
+			"\"ms-python.vscode-pylance\",",
+			"\"donjayamanne.githistory\",",
+			"\"eamodio.gitlens\",",
+			"\"ryuta46.multi-command\""
+		]
+	}
+}

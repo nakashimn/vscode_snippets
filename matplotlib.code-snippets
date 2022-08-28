@@ -1,0 +1,66 @@
+{
+	"matplotlib.pyplot.figure": {
+		"scope": "python",
+		"prefix": "fig",
+		"body": [
+			"fig = plt.figure(figsize=[${1:width}, ${2:height}], tight_layout=True)",
+			"axis = fig.add_subplot(1, 1, 1)"
+		]
+	},
+	"matplotlib.pyplot.figure(grid)": {
+		"scope": "python",
+		"prefix": "fig(grid)",
+		"body": [
+			"fig = plt.figure(figsize=[${1:width}, ${2:height}], tight_layout=True)",
+			"axes = [fig.add_subplot(${3:rows}, ${4:cols}, i+1) for i in range(${5:rows*cols})]"
+		]
+	},
+	"matplotlib.pyplot.rcParams": {
+		"scope": "python",
+		"prefix": "plt.rcParams",
+		"body": [
+			"plt.rcParams[\"font.size\"] = ${1:20}",
+			"plt.rcParams[\"font.family\"] = \"${2:MS Gothic}\""
+		]
+	},
+	"matplotlib.pyplot.cmap": {
+		"scope": "python",
+		"prefix": "cmap",
+		"body": [
+			"plt.get_cmap(\"${1|tab20,tab20b,tab20c,Pastel1,Pastel2|}\")"
+		],
+		"description": "params example : tab20, tab20b, tab20c, Pastel1, Pastel2"
+	},
+	"plt.imshow": {
+		"scope": "python",
+		"prefix": ["plt.imshow", "plt_imshow", "imshow"],
+		"body": [
+			"plt.imshow(${TM_SELECTED_TEXT}$1)"
+		]
+	},
+	"plt.hist": {
+		"scope": "python",
+		"prefix": ["plt.hist", "plt_hist", "hist"],
+		"body": [
+			"plt.hist(${TM_SELECTED_TEXT}$1, bins=30, ec=\"black\", alpha=0.5)"
+		]
+	},
+	"plt.hist(compared)": {
+		"scope": "python",
+		"prefix": ["plt.hist(compared)", "plt_hist(compared)", "hist(compared)"],
+		"body": [
+			"bin_width = 0.1",
+			"bins = np.arange(0, 1, bin_width)",
+			"plt.hist($1, bins=bins, ec=\"black\", alpha=0.5, align=\"mid\", width=bin_width/2)",
+			"plt.hist($2, bins=bins, ec=\"black\", alpha=0.5, align=\"right\", width=bin_width/2)"
+		]
+	},
+	"axis.grid(y)": {
+		"scope": "python",
+		"prefix": "axis.grid.y",
+		"body": [
+			"axis.set_axisbelow(True)",
+			"axis.grid(axis=\"y\")"
+		]
+	},
+}

@@ -1,0 +1,24 @@
+{
+	"cv2.imread": {
+		"scope": "python",
+		"prefix": ["cv2.imread", "cv2_imread", "imread"],
+		"body": [
+			"cv2.imread(${TM_SELECTED_TEXT}$1)"
+		]
+	},
+	"cv2.cvtColor(BGRtoRGB)": {
+		"scope": "python",
+		"prefix": ["cv2.cvtColor(BGRtoRGB)", "cv2_cvtColor(BGRtoRGB)"],
+		"body": [
+			"cv2.cvtColor($1, cv2.COLOR_BGR2RGB)"
+		]
+	},
+	"cv2.mask": {
+		"scope": "python",
+		"prefix": "mask",
+		"body": [
+			"mask = (${1:img}<threshold).astype(np.uint8)",
+			"img_masked = cv2.bitwise_and(${1:img}, ${1:img}, mask=mask)"
+		]
+	}
+}

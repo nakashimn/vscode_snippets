@@ -1,0 +1,96 @@
+{
+	"unittest": {
+		"scope": "python",
+		"prefix": "unittest",
+		"body": [
+			"import unittest",
+			"from numpy import testing as nptest",
+			"from pandas import testing as pdtest",
+			"import sys",
+			"import pathlib",
+			"import numpy as np",
+			"import pandas as pd",
+			"sys.path.append(f\"{str(pathlib.Path().cwd().parents[0])}/src\")",
+			"import ${1:ModuleName} as Target",
+			"",
+			"class Test${1:ModuleName}(unittest.TestCase):",
+			"\t@classmethod",
+			"\tdef setUpClass(cls):",
+			"\t\tpass",
+			"",
+			"\t@classmethod",
+			"\tdef tearDownClass(cls):",
+			"\t\tpass",
+			"",
+			"\tdef setUp(self):",
+			"\t\tpass",
+			"",
+			"\tdef tearDown(self):",
+			"\t\tpass",
+			"",
+			"if __name__==\"__main__\":",
+			"",
+			"\tunittest.main()"
+		]
+	},
+	"testcase": {
+		"scope": "python",
+		"prefix": "testcase",
+		"body": [
+			"def test_${1:functionname}_case${2:01}(self):",
+			"\t'''!",
+			"\t@brief ",
+			"\t'''",
+			"\t$3",
+			"\tself.assertEqual(expected, actual)"
+		]
+	},
+	"testcase(numpy)": {
+		"scope": "python",
+		"prefix": "testcase(numpy)",
+		"body": [
+			"def test_${1:functionname}_case${2:01}(self):",
+			"\t'''!",
+			"\t@brief ",
+			"\t'''",
+			"\t$3",
+			"\tnptest.assert_almost_equal(expected, actual, decimal=4)"
+		]
+	},
+	"testcase(pandas)": {
+		"scope": "python",
+		"prefix": "testcase(pandas)",
+		"body": [
+			"def test_${1:functionname}_case${2:01}(self):",
+			"\t'''!",
+			"\t@brief ",
+			"\t'''",
+			"\t$3",
+			"\tpdtest.assert_frame_equal(expected, actual)"
+		]
+	},
+	"testpattern z-score normalization(1)": {
+		"scope": "python",
+		"prefix": "prefix",
+		"body": [
+			"input = np.array([1, 2, 2, 3, 3, 3, 4, 4, 5])",
+			"expected = np.array([",
+			"\t-1.73205081, -0.8660254 , -0.8660254,",
+			"\t0., 0., 0.,",
+			"\t0.8660254 , 0.8660254 , 1.73205081",
+			"])"
+		]
+	},
+	"testpattern z-score normalization(2)": {
+		"scope": "python",
+		"prefix": "prefix",
+		"body": [
+			"input = np.array([1, 2, 3, 3, 3, 3, 3, 4, 5])",
+			"expected = np.array([",
+			"\t-1.8973666, -0.9486833, 0.,",
+			"\t0., 0., 0.,",
+			"\t0., 0.9486833, 1.8973666",
+			"])"
+		]
+	}
+}

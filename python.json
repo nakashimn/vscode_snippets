@@ -1,0 +1,309 @@
+{
+
+	// import
+
+	"import default packages":{
+		"prefix":"import default",
+		"body":[
+			"import os",
+			"import sys",
+			"import argparse",
+			"import pathlib",
+			"import glob",
+			"import datetime",
+			"import json",
+			"from tqdm import tqdm",
+			"import numpy as np",
+			"import pandas as pd",
+			"import matplotlib.pyplot as plt",
+			"import traceback",
+			""
+		]
+	},
+	"import data analysis packages": {
+		"prefix": "import data analysis",
+		"body": [
+			"import os",
+			"import sys",
+			"import argparse",
+			"import pathlib",
+			"import glob",
+			"import datetime",
+			"import json",
+			"from tqdm import tqdm",
+			"import numpy as np",
+			"import pandas as pd",
+			"from scipy import stats",
+			"import matplotlib.pyplot as plt",
+			"import seaborn as sns",
+			"import traceback",
+			""
+		]
+	},
+	"import scipy.stats": {
+		"prefix": "import scipy.stats",
+		"body": [
+			"from scipy import stats"
+		]
+	},
+	"import sklearn.metrics": {
+		"prefix": "import sklearn.metrics",
+		"body": [
+			"from sklearn.metrics import confusion_matrix, precision_score, recall_score, accuracy_score, f1_score"
+		]
+	},
+	"import sklearn.iris_dataset": {
+		"prefix": "import sklearn iris-dataset",
+		"body": [
+			"from sklearn.datasets import load_iris"
+		]
+	},
+	"import sklearn.tree": {
+		"prefix": "import sklearn RandomForestRegressor",
+		"body": [
+			"from sklearn import tree"
+		]
+	},
+	"import sklearn.ensemble": {
+		"prefix": "import sklearn ensemble",
+		"body": [
+			"from sklearn import tree",
+			"from sklearn import ensemble"
+		]
+	},
+	"import sklearn.KMeans": {
+		"prefix": "import sklearn KMeans",
+		"body": [
+			"from sklearn.cluster import KMeans"
+		]
+	},
+	"import pytorch-lightning": {
+		"prefix": "import pytorch-lightning",
+		"body": [
+			"import torch",
+			"import torch.optim as optim",
+			"from torch import nn",
+			"from torch.nn import functional as F",
+			"from torch.utils.data import DataLoader, Dataset",
+			"import torchvision.transforms as T",
+			"from torchvision import io",
+			"import pytorch_lightning as pl",
+			"from pytorch_lightning import LightningModule, LightningDataModule, callbacks",
+			"from pytorch_lightning.callbacks.early_stopping import EarlyStopping",
+			"from pytorch_lightning.loggers import MLFlowLogger",
+			"from sklearn.model_selection import StratifiedKFold"
+		]
+	},
+	"import lightgbm": {
+		"prefix": "import lightgbm",
+		"body": [
+			"from sklearn.model_selection import train_test_split",
+			"import lightgbm as lgb"
+		]
+	},
+	"import timm": {
+		"prefix": "import timm",
+		"body": [
+			"from timm import create_model"
+		]
+	},
+	"import pandas.testing": {
+		"prefix": "pdtest",
+		"body": [
+			"import pandas.testing as pdtest"
+		]
+	},
+
+	// Logger
+
+	"Logger":{
+		"prefix":"logger_",
+		"body":[
+			"from logging import getLogger, StreamHandler, DEBUG",
+			"logger = getLogger(__name__)",
+			"handler = StreamHandler()",
+			"handler.setLevel(DEBUG)",
+			"logger.addHandler(handler)",
+			"logger.setLevel(DEBUG)",
+			"logger.propagate = False"
+		]
+	},
+	"NullLogger": {
+		"prefix": "logger_(null)",
+		"body": [
+			"from logging import getLogger, DEBUG",
+			"logger = getLogger(__name__)",
+			"handler = NullHandler()",
+			"logger.addHandler(handler)",
+			"logger.propagate = False"
+		]
+	},
+	"StreamHandler": {
+		"prefix": "handler_(stream)",
+		"body": [
+			"stream_handler = StreamHandler()",
+			"stream_handler.setLevel(DEBUG)",
+			"logger.addHandler(stream_handler)"
+		]
+	},
+	"FlieHandler": {
+		"prefix": "handler_(file)",
+		"body": [
+			"file_handler = FileHandler($1)",
+			"file_handler.setLevel(DEBUG)",
+			"logger.addHandler(file_handler)"
+		]
+	},
+	"Logger(Class)": {
+		"prefix": "logger_(class)",
+		"body": [
+			"self.logger = cls_logger or default_logger"
+		]
+	},
+	"warning(traceback)": {
+		"prefix": "warning(traceback)",
+		"body": [
+			"logger.warning(traceback.format_exc())"
+		]
+	},
+
+	// Utility
+
+	"Entrypoint":{
+		"prefix":["if __name__==\"__main__\"", "if_"],
+		"body":[
+			"if __name__==\"__main__\":",
+			"\t",
+		]
+	},
+	"try/except": {
+		"prefix": ["try/except", "try_", "try "],
+		"body": [
+			"try:",
+			"\t${TM_SELECTED_TEXT}$1",
+			"except Exception as e:",
+			"\tlogger.warning(traceback.format_exec())"
+		]
+	},
+	"with open":{
+		"prefix":["open_", "with open"],
+		"body":[
+			"with open(${TM_SELECTED_TEXT}$1, \"$2:1r\", encoding=\"utf-8\") as f:",
+			"\t"
+		]
+	},
+	"for filepath":{
+		"prefix":["for fp", "for_fp"],
+		"body":[
+			"for filepath_$1 in tqdm(filepaths_$1):",
+			"\tbreak"
+		]
+	},
+	"for dict":{
+		"prefix":["for dict"],
+		"body":[
+			"for key,val in tqdm(${TM_SELECTED_TEXT}$1.items()):",
+			"\tbreak"
+		]
+	},
+	"pathlib.Path": {
+		"prefix": ["pathlib.Path", "pathlib_path", "path_"],
+		"body": [
+			"pathlib.Path(${TM_SELECTED_TEXT}$1)"
+		]
+	},
+	"parent_dir": {
+		"prefix": ["parent dir", "parent_"],
+		"body": [
+			"str(pathlib.Path(__file__).parents[0])"
+		]
+	},
+	"grandparent_dir": {
+		"prefix": ["grandparent dir", "grandparend_"],
+		"body": [
+			"str(pathlib.Path(__file__).parents[1])"
+		]
+	},
+	"glob": {
+		"prefix": ["glob.", "glob_", "gl_"],
+		"body": [
+			"glob.glob(f\"${TM_SELECTED_TEXT}$1\", recursive=True)"
+		]
+	},
+	"str_format": {
+		"prefix": "f",
+		"body": [
+			"f\"{${TM_SELECTED_TEXT}$1}\""
+		]
+	},
+	"str_format(clipboard)": {
+		"prefix": "fc",
+		"body": [
+			"f\"${CLIPBOARD}$1\""
+		]
+	},
+	"re.search": {
+		"prefix": "re_search",
+		"body": [
+			"re.search(\"$1\", ${TM_SELECTED_TEXT}$1).group()"
+		]
+	},
+	"re.findall": {
+		"prefix": "re_findall",
+		"body": [
+			"re.findall(\"$1\", ${TM_SELECTED_TEXT}$1)"
+		]
+	},
+	"pbar": {
+		"prefix": "pbar",
+		"body": [
+			"pbar = tqdm(${TM_SELECTED_TEXT}$1)"
+		]
+	},
+	"pbar.set_postfix_str": {
+		"prefix": ["pbar.set_postfix_str", "pbar_set_postfix_str"],
+		"body": [
+			"pbar.set_postfix_str(f\"$1\")"
+		]
+	},
+
+	// abbr
+
+	"filepath_": {
+		"prefix": "fp_",
+		"body": [
+			"filepath_$1"
+		]
+	},
+	"filepaths_": {
+		"prefix": "fps_",
+		"body": [
+			"filepaths_$1"
+		]
+	},
+	"dirpath_": {
+		"prefix": "dp_",
+		"body": [
+			"dirpath_$1"
+		]
+	},
+	"dirpaths_": {
+		"prefix": "dps_",
+		"body": [
+			"dirpaths_$1"
+		]
+	},
+	"column": {
+		"prefix": "col",
+		"body": [
+			"columns"
+		]
+	},
+	"axis": {
+		"prefix": "ax",
+		"body": [
+			"axis"
+		]
+	},
+
+}

@@ -1,0 +1,99 @@
+{
+	"def get_timestamp": {
+		"scope": "python",
+		"prefix": "def get_timestamp",
+		"body": [
+			"def get_timestamp():",
+			"\ttimestamp = datetime.datetime.now().strftime(\"%Y/%m/%d %H:%M:%S\")",
+			"\treturn f\"[{timestamp}] {os.path.basename(__file__)}\""
+		]
+	},
+	"argparser": {
+		"scope": "python",
+		"prefix": "def get_args",
+		"body": [
+			"def get_args():",
+			"\tparser = argparse.ArgumentParser()",
+			"\tparser.add_argument(",
+			"\t\t\"-i\", \"--input\",",
+			"\t\thelp=\"input\",",
+			"\t\ttype=int,",
+			"\t\trequired=False,",
+			"\t\tdefault=0",
+			"\t)",
+			"\tparser.add_argument(",
+			"\t\t\"-f\", \"--flag\",",
+			"\t\thelp=\"flag\",",
+			"\t\taction=\"store_true\"",
+			"\t)",
+			"\tparser.add_argument(",
+			"\t\t\"-c\", \"--choices\",",
+			"\t\thelp=\"choices\",",
+			"\t\tchoices=[\"A\", \"B\", \"C\"],",
+			"\t\trequired=False,",
+			"\t\tdefault=\"A\"",
+			"\t)",
+			"\treturn parser.parse_args()"
+		]
+	},
+	"def read_text": {
+		"scope": "python",
+		"prefix": "def read_text",
+		"body": [
+			"def read_text(filepath):",
+			"\ttry:",
+			"\t\twith open(filepath, \"r\") as f:",
+			"\t\t\ttxt = f.read()",
+			"\t\treturn txt",
+			"\texcept:",
+			"\t\tlogger.warning(traceback.format_exc())",
+			"\t\treturn None"
+		]
+	},
+	"def read_config": {
+		"scope": "python",
+		"prefix": "def read_config",
+		"body": [
+			"def read_config(filepath)",
+			"\ttry:",
+			"\t\twith open(filepath, \"r\", encoding=\"utf-8\") as f:",
+			"\t\t\tconfig = json.load(f)",
+			"\t\treturn config",
+			"\texcept:",
+			"\t\tlogger.warning(traceback.format_exc())",
+			"\t\treturn None"
+		]
+	},
+	"def extract_table": {
+		"scope": "python",
+		"prefix": "def extract_table",
+		"body": [
+			"def extract_table(df, col, val):",
+			"\treturn df.loc[df[col]==val].reset_index(drop=True)"
+		]
+	},
+	"def extract_table(contain_str)": {
+		"scope": "python",
+		"prefix": "def extract_table(contain_str)",
+		"body": [
+			"def extract_table(df, col, val):",
+			"\treturn df.loc[df[col].str.contains(val)].reset_index(drop=True)"
+		]
+	},
+	"def drop_table": {
+		"scope": "python",
+		"prefix": "def drop_table",
+		"body": [
+			"def drop_table(df, col, val):",
+			"\treturn df.loc[df[col]!=val].reset_index(drop=True)"
+		]
+	},
+	"def unique_table": {
+		"scope": "python",
+		"prefix": "def unique_table",
+		"body": [
+			"def unique_table(df, col):",
+			"\treturn df.loc[~df[col].duplicated()].reset_index(drop=True)"
+		]
+	}
+}

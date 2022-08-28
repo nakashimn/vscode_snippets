@@ -1,0 +1,235 @@
+{
+	"TableDataset": {
+		"scope": "python",
+		"prefix": "pl_table_dataset",
+		"body": [
+			"class TableDataset(Dataset):",
+			"\tdef __init__(self, df, transform=None):",
+			"\t\tself._features = df[[\"features\"]].values",
+			"\t\tself._label = None",
+			"\t\tif \"label\" in df.keys():",
+			"\t\t\tself._labels = df[\"label\"]",
+			"\t\tself._transform = transform",
+			"",
+			"\tdef __len__(self):",
+			"\t\treturn len(self._features)",
+			"",
+			"\tdef __getitem__(self, idx):",
+			"\t\tfeatures = self._features[idx]",
+			"\t\tif self._transform is not None:",
+			"\t\t\tfeatures = self._transform(features)",
+			"\t\tif self._labels is not None:",
+			"\t\t\tlabel = self._labels[idx]",
+			"\t\t\treturn features, label",
+			"\t\treturn features"
+		]
+	},
+	"ImageDataset": {
+		"scope": "python",
+		"prefix": "pl_image_dataset",
+		"body": [
+			"class ImageDataset(Dataset):",
+			"\tdef __init__(self, df, image_size=224):",
+			"\t\tself._imgpathes = df[\"filepath\"].values",
+			"\t\tself._labels = None",
+			"\t\tif \"label\" in df.keys():",
+			"\t\t\tself._labels = df[\"label\"]",
+			"\t\tself._transform = T.Compose([",
+			"\t\t\tT.Resize(size=image_size),",
+			"\t\t\tT.CenterCrop(size=image_size)",
+			"\t\t])",
+			"",
+			"\tdef __len__(self):",
+			"\t\treturn len(self._imgpathes)",
+			"",
+			"\tdef __getitem__(self, idx):",
+			"\t\timgpath = self._imgpathes[idx]",
+			"\t\timg = io.read_image(imgpath)",
+			"\t\timg = self._transform(img)",
+			"\t\tif self._label is not None:",
+			"\t\t\tlabel = self._labels[idx]",
+			"\t\t\treturn img, label",
+			"\treturn img"
+		]
+	},
+	"DataModule": {
+		"scope": "python",
+		"prefix": "pl_datamodule",
+		"body": [
+			"class MyDataModule(LightningDataModule):",
+			"\tdef __init__(",
+			"\t\tself,",
+			"\t\tdf_train,",
+			"\t\tdf_val,",
+			"\t\tdf_pred,",
+			"\t\tconfig,",
+			"\t):",
+			"\t\tsuper().__init__()",
+			"\t\tself._df_train = df_train",
+			"\t\tself._df_val = df_val",
+			"\t\tself._df_pred = df_pred",
+			"\t\tself._config = config",
+			"",
+			"\tdef train_dataloader(self):",
+			"\t\tdataset = MyDataset(self._df_train)",
+			"\t\treturn DataLoader(dataset, **self._config[\"train_loader\"])",
+			"",
+			"\tdef val_dataloader(self):",
+			"\t\tdataset = MyDataset(self._df_val)",
+			"\t\treturn DataLoader(dataset, **self._config[\"val_loader\"])",
+			"",
+			"\tdef predict_dataloader(self):",
+			"\t\tdataset = MyDataset(self._df_pred)",
+			"\t\treturn DataLoader(dataset, **self._config[\"pred_loader\"])",
+		]
+	},
+	"Model": {
+		"scope": "python",
+		"prefix": "pl_model",
+		"body": [
+			"class MyModel(LightningModule):",
+			"\tdef __init__(self, config):",
+			"\t\tsuper().__init__()",
+			"",
+			"\t\tself.config = config",
+			"\t\tself.base_model = None  # model",
+			"\t\tself.fc = None          # full connect layer",
+			"",
+			"\t\tself.criterion = nn.BCEWithLogitsLoss() # loss function",
+			"",
+			"\t\tself.val_probs = np.nan",
+			"\t\tself.val_preds = np.nan",
+			"\t\tself.val_labels = np.nan",
+			"",
+			"\tdef forward(self, x):",
+			"\t\tout = self.base_model(x)",
+			"\t\tout = self.fc(out)",
+			"\t\treturn out",
+			"",
+			"\tdef training_step(self, batch, batch_idx):",
+			"\t\tfeatures, labels = batch",
+			"\t\tlogits = self.forward(features)",
+			"\t\tloss = self.criterion(logits, labels)",
+			"\t\tself.log(\"train_loss\", loss)",
+			"\t\tpred = logits.detach().cpu().numpy()",
+			"\t\tlabel = labels.detach().cpu().numpy()",
+			"\t\treturn {\"loss\": loss, \"pred\": pred, \"label\": label}",
+			"",
+			"\tdef validation_step(self, batch, batch_idx):",
+			"\t\tfeatures, labels = batch",
+			"\t\tlogits = self.forward(features)",
+			"\t\tloss = self.criterion(logits, labels)",
+			"\t\tself.log(\"val_loss\", loss)",
+			"\t\tpred = logits.detach().cpu().numpy()",
+			"\t\tlabel = labels.detach().cpu().numpy()",
+			"\t\treturn {\"loss\": loss, \"pred\": pred, \"label\": label}",
+			"",
+			"\tdef predict_step(self, batch, batch_idx):",
+			"\t\tfeatures = batch",
+			"\t\tlogits = self.forward(features)",
+			"\t\tprob = logits.detach().cpu()",
+			"\t\treturn {\"prob\": prob}",
+			"",
+			"\tdef training_epoch_end(self, outputs):",
+			"\t\tprobs = torch.cat([out[\"prob\"] for out in outputs])",
+			"\t\tlabels = torch.cat([out[\"labels\"] for out in outputs])",
+			"\t\tmetrics = self.criterion(probs, labels)",
+			"\t\tself.log(f\"train_loss\", metrics)",
+			"\t\treturn super().training_epoch_end(outputs)",
+			"",
+			"\tdef validation_epoch_end(self, outputs):",
+			"\t\tprobs = torch.cat([out[\"prob\"] for out in outputs])",
+			"\t\tpreds = torch.cat([out[\"pred\"] for out in outputs])",
+			"\t\tlabels = torch.cat([out[\"labels\"] for out in outputs])",
+			"\t\tmetrics = self.criterion(probs, labels)",
+			"\t\tself.log(f'train_loss', metrics)",
+			"",
+			"\t\tself.val_probs = probs.detach().cpu().numpy()",
+			"\t\tself.val_preds = preds.detach().cpu().numpy()",
+			"\t\tself.val_labels = labels.detach().cpu().numpy()",
+			"",
+			"\t\treturn super().validation_epoch_end(outputs)",
+			"",
+			"\tdef configure_optimizers(self):",
+			"\t\toptimizer = eval(self.config[\"optimizer\"][\"name\"])(",
+			"\t\t\tself.parameters(), **self.config[\"optimizer\"][\"params\"]",
+			"\t\t)",
+			"\t\tscheduler = eval(self.config[\"scheduler\"][\"name\"])(",
+			"\t\t\toptimizer,",
+			"\t\t\t**self.config[\"scheduler\"][\"params\"]",
+			"\t\t)",
+			"\t\treturn [optimizer], [scheduler]"
+		]
+	},
+	"torchvision.transforms": {
+		"scope": "python",
+		"prefix": "transforms",
+		"body": [
+			"transforms = T.Compose([",
+			"\tT.ToTensor(),",
+			"\tT.Resize(${1:imagesize}),",
+			"\tT.CenterCrop(${1:imagesize}),",
+			"\tT.ConvertImageDtype(torch.float),",
+			"\tT.Normalize(${2:mean}, ${3:std})",
+			"])"
+		]
+	},
+	"torchvision.transforms(imagenet)": {
+		"scope": "python",
+		"prefix": "transforms(imagenet)",
+		"body": [
+			"imagesize = 244",
+			"mean = [0.485, 0.456, 0.406]",
+			"std = [0.229, 0.224, 0.225]",
+			"transforms = T.Compose([",
+			"\tT.ToTensor(),",
+			"\tT.Resize(imagesize),",
+			"\tT.CenterCrop(imagesize),",
+			"\tT.ConvertImageDtype(torch.float),",
+			"\tT.Normalize(mean, std)",
+			"])"
+		]
+	},
+	"fix_seed": {
+		"scope": "python",
+		"prefix": "fix_seed",
+		"body": [
+			"def fix_seed(seed):",
+			"\tos.environ[\"PYTHONHASHSEED\"] = str(seed)",
+			"\trandom.seed(seed)",
+			"\tnp.random.seed(seed)",
+			"\ttorch.manual_seed(seed)",
+			"\ttorch.cuda.manual_seed_all(seed)",
+			"\ttorch.backends.cudnn.deterministic = True",
+			"\ttorch.backends.cudnn.benchmark = False"
+		]
+	},
+	".detach": {
+		"scope": "python",
+		"prefix": [".detach"],
+		"body": [
+			".detach()"
+		]
+	},
+	".detach.numpy": {
+		"scope": "python",
+		"prefix": [".detach.np", ".detach_np"],
+		"body": [
+			".detach().cpu().numpy()"
+		]
+	},
+	".softmax": {
+		"scope": "python",
+		"prefix": [".softmax"],
+		"body": [
+			".softmax(axis=1)"
+		]
+	},
+	".sigmoid": {
+		"scope": "python",
+		"prefix": [".sigmoid"],
+		"body": [
+			".sigmoid()"
+		]
+	}
+}

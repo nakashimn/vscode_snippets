@@ -1,0 +1,21 @@
+{
+	"WebSocket Consumer": {
+		"scope": "python",
+		"prefix": "Consumer",
+		"body": [
+			"class ${1}Consumer(WebsocketConsumer):",
+			"\tdef connect(self):",
+			"${2}",
+			"\t\tself.accept()",
+			"",
+			"\tdef disconnect(self, close_code):",
+			"${3}",
+			"\t\tpass",
+			"",
+			"\tdef receive(self, text_data):",
+			"${4}",
+			"\t\tpass",
+			""
+		]
+	}
+}

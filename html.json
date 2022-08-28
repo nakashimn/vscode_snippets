@@ -1,0 +1,26 @@
+{
+	"script": {
+		"prefix": "script",
+		"body": [
+			"<script type=\"text/javascript\" src=\"./js/${1:script.js}\"></script>"
+		]
+	},
+	"p": {
+		"prefix": "p",
+		"body": [
+			"<p id=\"${1:id}\"></p>"
+		]
+	},
+	"button": {
+		"prefix": "button",
+		"body": [
+			"<button onclick=\"${1:FunctionName()}\">${2:text}</button>"
+		]
+	},
+	"video": {
+		"prefix": "video",
+		"body": [
+			"<video id=\"${1:id}\" autoplay style=\"width: ${2:640}px; height: ${3:480}px;\"></video>"
+		]
+	}
+}

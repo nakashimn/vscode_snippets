@@ -1,0 +1,41 @@
+{
+	// Setting
+	"default format": {
+		"prefix": "@startuml(default)",
+		"body": [
+			"@startuml",
+			"",
+			"skinparam monochrome true",
+			"skinparam shadowing true",
+			"",
+			"$1",
+			"",
+			"@enduml",
+		]
+	},
+
+	// Example
+	"example(Sequence)": {
+		"prefix": "example(Sequence)",
+		"body": [
+			"@startuml",
+			"",
+			"skinparam monochrome true",
+			"skinparam shadowing true",
+			"autoactivate on",
+			"",
+			"Interface -> Component ** : Instantiate()",
+			"",
+			"loop",
+			"\tInterface -> Component : Call()",
+			"\tInterface <-- Component : message",
+			"end",
+			"",
+			"Interface -> Component !! : Terminate()",
+			"",
+			"",
+			"@enduml",
+			""
+		]
+	}
+}

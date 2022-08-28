@@ -1,0 +1,71 @@
+{
+	"sklearn.train_test_split": {
+		"scope": "python",
+		"prefix": "sklearn.train_test_split",
+		"body": [
+			"train_test_split(${1:train}, ${2:test}, test_size=0.1, shuffle=True)"
+		]
+	},
+	"sklearn.tree.DecisionTreeClassifier": {
+		"scope": "python",
+		"prefix": "sklearn.tree.DecisionTreeCalssifier",
+		"body": [
+			"clf = tree.DecisionTreeClassifier(max_depth=${4:4})",
+			"clf.fit($1, $2)"
+		]
+	},
+	"sklearn.tree.DecisionTreeRegressor": {
+		"scope": "python",
+		"prefix": "sklearn.tree.DecisionTreeRegressor",
+		"body": [
+			"clf = tree.DecisionTreeRegressor(max_depth=${4:4})",
+			"clf.fit($1, $2)"
+		]
+	},
+	"sklearn.ensemble.RandomForestClassifier": {
+		"scope": "python",
+		"prefix": "sklearn.ensemble.RandomForestClassifier",
+		"body": [
+			"clf = ensemble.RandomForestClassifier(n_estimators=${3:100}, max_depth=${4:4})",
+			"clf.fit($1, $2)"
+		]
+	},
+	"sklearn.ensemble.RandomForestRegressor": {
+		"scope": "python",
+		"prefix": "sklearn.ensemble.RandomForestRegressor",
+		"body": [
+			"clf = ensemble.RandomForestRegressor(n_estimators=${3:100}, max_depth=${4:4})",
+			"clf.fit($1, $2)"
+		]
+	},
+	"tree.export_graphviz": {
+		"scope": "python",
+		"prefix": "sklearn.tree.export_graphviz",
+		"body": [
+			"tree.export_graphviz(${TM_SELECTED_TEXT}$1, out_file=$2,",
+			"\tfeature_names=$3, class_names=$4)"
+		],
+		"description": ">dot -Tpng <tree>.dot -o <tree>.png"
+	},
+	"sklearn.cluster.KMeans": {
+		"scope": "python",
+		"prefix": "sklearn.cluster.KMeans",
+		"body": [
+			"kmeans = KMeans(n_clusters=$1, random_state=42)",
+			"model =  kmeans.fit(${2:df})",
+			"labels = model.labels_",
+			"cluster = [${2:df}.columns[labels==l] for l in labels]"
+		]
+	},
+	"confmat": {
+		"scope": "python",
+		"prefix": "confmat",
+		"body": [
+			"df_confmat = pd.DataFrame(",
+			"\tconfusion_matrix(${1:probs}, ${2:labels}),",
+			"\tindex=${3:label},",
+			"\tcolumns=${3:label}",
+			")"
+		]
+	}
+}

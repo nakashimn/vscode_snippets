@@ -1,0 +1,8 @@
+{
+	"link": {
+		"prefix": "link",
+		"body": [
+			"[{$1:LinkText}](${$2:URL} \"{$3:Title}\")"
+		]
+	}
+}

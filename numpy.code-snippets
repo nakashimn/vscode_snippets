@@ -1,0 +1,23 @@
+{
+	"np.array": {
+		"scope": "python",
+		"prefix": ["np.array", "np_array"],
+		"body": [
+			"np.array($1)"
+		]
+	},
+	"np.full(nan)": {
+		"scope": "python",
+		"prefix": ["np.fullnan", "np_fullnan"],
+		"body": [
+			"np.full([${1:row}, ${2:col}], np.nan)"
+		]
+	},
+	"np.clip": {
+		"scope": "python",
+		"prefix": ["np.clip", "np_clip"],
+		"body": [
+			"np.clip($1, ${2:min}, ${3:max})"
+		]
+	}
+}
