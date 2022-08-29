@@ -10,7 +10,7 @@
 		"scope": "python",
 		"prefix": "sklearn.tree.DecisionTreeCalssifier",
 		"body": [
-			"clf = tree.DecisionTreeClassifier(max_depth=${4:4})",
+			"clf = tree.DecisionTreeClassifier(max_depth=${3:4})",
 			"clf.fit($1, $2)"
 		]
 	},
@@ -18,7 +18,7 @@
 		"scope": "python",
 		"prefix": "sklearn.tree.DecisionTreeRegressor",
 		"body": [
-			"clf = tree.DecisionTreeRegressor(max_depth=${4:4})",
+			"clf = tree.DecisionTreeRegressor(max_depth=${3:4})",
 			"clf.fit($1, $2)"
 		]
 	},
@@ -42,8 +42,8 @@
 		"scope": "python",
 		"prefix": "sklearn.tree.export_graphviz",
 		"body": [
-			"tree.export_graphviz(${TM_SELECTED_TEXT}$1, out_file=$2,",
-			"\tfeature_names=$3, class_names=$4)"
+			"tree.export_graphviz(${TM_SELECTED_TEXT}$0, out_file=$1,",
+			"\tfeature_names=$2, class_names=$3)"
 		],
 		"description": ">dot -Tpng <tree>.dot -o <tree>.png"
 	},

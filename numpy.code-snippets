@@ -3,7 +3,7 @@
 		"scope": "python",
 		"prefix": ["np.array", "np_array"],
 		"body": [
-			"np.array($1)"
+			"np.array($0)"
 		]
 	},
 	"np.full(nan)": {
@@ -17,7 +17,7 @@
 		"scope": "python",
 		"prefix": ["np.clip", "np_clip"],
 		"body": [
-			"np.clip($1, ${2:min}, ${3:max})"
+			"np.clip($0, ${1:min}, ${2:max})"
 		]
 	}
 }

@@ -35,14 +35,14 @@
 		"scope": "python",
 		"prefix": ["plt.imshow", "plt_imshow", "imshow"],
 		"body": [
-			"plt.imshow(${TM_SELECTED_TEXT}$1)"
+			"plt.imshow(${TM_SELECTED_TEXT}$0)"
 		]
 	},
 	"plt.hist": {
 		"scope": "python",
 		"prefix": ["plt.hist", "plt_hist", "hist"],
 		"body": [
-			"plt.hist(${TM_SELECTED_TEXT}$1, bins=30, ec=\"black\", alpha=0.5)"
+			"plt.hist(${TM_SELECTED_TEXT}$0, bins=30, ec=\"black\", alpha=0.5)"
 		]
 	},
 	"plt.hist(compared)": {
@@ -51,8 +51,8 @@
 		"body": [
 			"bin_width = 0.1",
 			"bins = np.arange(0, 1, bin_width)",
-			"plt.hist($1, bins=bins, ec=\"black\", alpha=0.5, align=\"mid\", width=bin_width/2)",
-			"plt.hist($2, bins=bins, ec=\"black\", alpha=0.5, align=\"right\", width=bin_width/2)"
+			"plt.hist($0, bins=bins, ec=\"black\", alpha=0.5, align=\"mid\", width=bin_width/2)",
+			"plt.hist(, bins=bins, ec=\"black\", alpha=0.5, align=\"right\", width=bin_width/2)"
 		]
 	},
 	"axis.grid(y)": {

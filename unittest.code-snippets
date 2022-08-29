@@ -41,7 +41,7 @@
 			"\t'''!",
 			"\t@brief ",
 			"\t'''",
-			"\t$3",
+			"\t$0",
 			"\tself.assertEqual(expected, actual)"
 		]
 	},
@@ -53,7 +53,7 @@
 			"\t'''!",
 			"\t@brief ",
 			"\t'''",
-			"\t$3",
+			"\t$0",
 			"\tnptest.assert_almost_equal(expected, actual, decimal=4)"
 		]
 	},
@@ -65,7 +65,7 @@
 			"\t'''!",
 			"\t@brief ",
 			"\t'''",
-			"\t$3",
+			"\t$0",
 			"\tpdtest.assert_frame_equal(expected, actual)"
 		]
 	},

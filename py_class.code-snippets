@@ -3,7 +3,7 @@
 		"scope": "python",
 		"prefix": ["super.init", "super_init"],
 		"body": [
-			"super().__init__($1)"
+			"super().__init__($0)"
 		]
 	},
 	"JsonReader": {

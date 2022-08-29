@@ -3,42 +3,42 @@
 		"scope": "python",
 		"prefix": ["pd.concat", "pd_concat"],
 		"body": [
-			"pd.concat([$1, $2], axis=0, ignore_index=True)"
+			"pd.concat([$0, ], axis=0, ignore_index=True)"
 		]
 	},
 	"pd.read_csv": {
 		"scope": "python",
 		"prefix": ["pd.read_csv", "pd_read_csv"],
 		"body": [
-			"pd.read_csv($1)"
+			"pd.read_csv($0)"
 		]
 	},
 	"pd.get_dummies": {
 		"scope": "python",
 		"prefix": ["pd.get_dummies_", "pd_get_dummies"],
 		"body": [
-			"pd.get_dummies($1)"
+			"pd.get_dummies($0)"
 		]
 	},
 	"pd.crosstab": {
 		"scope": "python",
 		"prefix": ["pd.crosstab_", "pd_crosstab"],
 		"body": [
-			"pd.crosstab($1, $2)"
+			"pd.crosstab($0, )"
 		]
 	},
 	"df_table": {
 		"scope": "python",
 		"prefix": "df_table",
 		"body": [
-			"df_table = pd.read_csv($1)"
+			"df_table = pd.read_csv($0)"
 		]
 	},
 	"for idx": {
 		"scope": "python",
 		"prefix": "for idx",
 		"body": [
-			"for idx in tqdm(${TM_SELECTED_TEXT}$1.index):",
+			"for idx in tqdm(${TM_SELECTED_TEXT}$0.index):",
 			"\tbreak"
 		]
 	},
@@ -46,21 +46,21 @@
 		"scope": "python",
 		"prefix": ".reset_index",
 		"body": [
-			".reset_index(drop=True)"
+			"${TM_SELECTED_TEXT}$0.reset_index(drop=True)"
 		]
 	},
 	".merge": {
 		"scope": "python",
 		"prefix": ".merge",
 		"body": [
-			".merge($2, on=$3, how=${1|inner,outer,left,right|})"
+			".merge($0, on=$2, how=${1|\"inner\",\"outer\",\"left\",\"right\"|})"
 		]
 	},
 	"pd.DataFrame": {
 		"scope": "python",
 		"prefix": ["pd.DataFrame", "pd_DataFrame"],
 		"body": [
-			"pd.DataFrame($1)"
+			"pd.DataFrame($0)"
 		]
 	}
 }

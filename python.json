@@ -149,7 +149,7 @@
 	"FlieHandler": {
 		"prefix": "handler_(file)",
 		"body": [
-			"file_handler = FileHandler($1)",
+			"file_handler = FileHandler($0)",
 			"file_handler.setLevel(DEBUG)",
 			"logger.addHandler(file_handler)"
 		]
@@ -180,7 +180,7 @@
 		"prefix": ["try/except", "try_", "try "],
 		"body": [
 			"try:",
-			"\t${TM_SELECTED_TEXT}$1",
+			"\t${TM_SELECTED_TEXT}$0",
 			"except Exception as e:",
 			"\tlogger.warning(traceback.format_exec())"
 		]
@@ -188,28 +188,28 @@
 	"with open":{
 		"prefix":["open_", "with open"],
 		"body":[
-			"with open(${TM_SELECTED_TEXT}$1, \"$2:1r\", encoding=\"utf-8\") as f:",
+			"with open(${TM_SELECTED_TEXT}$0, \"r\", encoding=\"utf-8\") as f:",
 			"\t"
 		]
 	},
 	"for filepath":{
 		"prefix":["for fp", "for_fp"],
 		"body":[
-			"for filepath_$1 in tqdm(filepaths_$1):",
+			"for filepath_$0 in tqdm(filepaths_$0):",
 			"\tbreak"
 		]
 	},
 	"for dict":{
 		"prefix":["for dict"],
 		"body":[
-			"for key,val in tqdm(${TM_SELECTED_TEXT}$1.items()):",
+			"for key,val in tqdm(${TM_SELECTED_TEXT}$0.items()):",
 			"\tbreak"
 		]
 	},
 	"pathlib.Path": {
 		"prefix": ["pathlib.Path", "pathlib_path", "path_"],
 		"body": [
-			"pathlib.Path(${TM_SELECTED_TEXT}$1)"
+			"pathlib.Path(${TM_SELECTED_TEXT}$0)"
 		]
 	},
 	"parent_dir": {
@@ -227,43 +227,43 @@
 	"glob": {
 		"prefix": ["glob.", "glob_", "gl_"],
 		"body": [
-			"glob.glob(f\"${TM_SELECTED_TEXT}$1\", recursive=True)"
+			"glob.glob(f\"${TM_SELECTED_TEXT}$0\", recursive=True)"
 		]
 	},
 	"str_format": {
 		"prefix": "f",
 		"body": [
-			"f\"{${TM_SELECTED_TEXT}$1}\""
+			"f\"{${TM_SELECTED_TEXT}$0}\""
 		]
 	},
 	"str_format(clipboard)": {
 		"prefix": "fc",
 		"body": [
-			"f\"${CLIPBOARD}$1\""
+			"f\"${CLIPBOARD}$0\""
 		]
 	},
 	"re.search": {
 		"prefix": "re_search",
 		"body": [
-			"re.search(\"$1\", ${TM_SELECTED_TEXT}$1).group()"
+			"re.search(\"$0\", ${TM_SELECTED_TEXT}$0).group()"
 		]
 	},
 	"re.findall": {
 		"prefix": "re_findall",
 		"body": [
-			"re.findall(\"$1\", ${TM_SELECTED_TEXT}$1)"
+			"re.findall(\"$0\", ${TM_SELECTED_TEXT}$0)"
 		]
 	},
 	"pbar": {
 		"prefix": "pbar",
 		"body": [
-			"pbar = tqdm(${TM_SELECTED_TEXT}$1)"
+			"pbar = tqdm(${TM_SELECTED_TEXT}$0)"
 		]
 	},
 	"pbar.set_postfix_str": {
 		"prefix": ["pbar.set_postfix_str", "pbar_set_postfix_str"],
 		"body": [
-			"pbar.set_postfix_str(f\"$1\")"
+			"pbar.set_postfix_str(f\"$0\")"
 		]
 	},
 
@@ -272,25 +272,25 @@
 	"filepath_": {
 		"prefix": "fp_",
 		"body": [
-			"filepath_$1"
+			"filepath_$0"
 		]
 	},
 	"filepaths_": {
 		"prefix": "fps_",
 		"body": [
-			"filepaths_$1"
+			"filepaths_$0"
 		]
 	},
 	"dirpath_": {
 		"prefix": "dp_",
 		"body": [
-			"dirpath_$1"
+			"dirpath_$0"
 		]
 	},
 	"dirpaths_": {
 		"prefix": "dps_",
 		"body": [
-			"dirpaths_$1"
+			"dirpaths_$0"
 		]
 	},
 	"column": {
@@ -304,6 +304,5 @@
 		"body": [
 			"axis"
 		]
-	},
-
+	}
 }

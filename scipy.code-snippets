@@ -1,9 +1,9 @@
 {
 	"corrcoef": {
 		"scope": "python",
-		"prefix": "corrcoef(stats.pearsonr)",
+		"prefix": ["sp.stats.corrcoef", "sp_stats_corrcoef"],
 		"body": [
-			"corrcoef, p_value = stats.pearsonr(${TM_SELECTED_TEXT}$1, $2)"
+			"corrcoef, p_value = stats.pearsonr(x=${TM_SELECTED_TEXT}$0, y=)"
 		]
 	}
 }
