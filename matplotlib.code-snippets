@@ -124,7 +124,7 @@
 		"scope": "python",
 		"prefix": "def draw_bar",
 		"body": [
-			"def draw_bar(axis, x, y, width=0.8, xlim=None, ylim=None, xlabel=None, ylabel=None, color=None, alpha=None, ec=None, align=${1|\"center\",\"edge\"|):",
+			"def draw_bar(axis, x, y, width=0.8, xlim=None, ylim=None, xlabel=None, ylabel=None, color=None, alpha=None, ec=None, align=${1|\"center\",\"edge\"|}):",
 			"\taxis.bar(x, y, width=width, color=color, alpha=alpha, ec=ec, align=align)",
 			"\taxis.set_xlim(xlim)",
 			"\taxis.set_ylim(ylim)",
