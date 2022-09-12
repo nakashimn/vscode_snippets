@@ -10,14 +10,14 @@
 		"scope": "python",
 		"prefix": ["sns.pairplot", "sns_pairplot", "pairplot"],
 		"body": [
-			"sns.pairplot(${TM_SELECTED_TEXT}$0, ax=axis, diag_kind=${1|\"kde\",\"scatter\",\"hist\",\"reg\"|}, plot_kws={\"alpha\":0.3, \"s\":50})"
+			"sns.pairplot(${TM_SELECTED_TEXT}$0, diag_kind=${1|\"kde\",\"scatter\",\"hist\",\"reg\"|}, plot_kws={\"alpha\":0.3, \"s\":50})"
 		]
 	},
 	"seaborn.jointplot": {
 		"scope": "python",
 		"prefix": ["sns.jointplot", "sns_jointplot", "jointplot"],
 		"body": [
-			"sns.jointplot(x=${TM_SELECTED_TEXT}$0, y=, ax=axis, kind=${1|\"hex\",\"scatter\",\"kde\",\"hist\",\"reg\",\"resid\"|})"
+			"sns.jointplot(x=${TM_SELECTED_TEXT}$0, y=, kind=${1|\"hex\",\"scatter\",\"kde\",\"hist\",\"reg\",\"resid\"|})"
 		]
 	}
 }

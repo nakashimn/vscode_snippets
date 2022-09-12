@@ -33,7 +33,7 @@
 			"from tqdm import tqdm",
 			"import numpy as np",
 			"import pandas as pd",
-			"from scipy import stats",
+			"from scipy import stats, special",
 			"import matplotlib.pyplot as plt",
 			"import seaborn as sns",
 			"import traceback",
@@ -44,6 +44,12 @@
 		"prefix": "import scipy.stats",
 		"body": [
 			"from scipy import stats"
+		]
+	},
+	"import scipy.special": {
+		"prefix": "import scipy.special",
+		"body": [
+			"from scipy import special"
 		]
 	},
 	"import sklearn.metrics": {
@@ -193,16 +199,16 @@
 		]
 	},
 	"for filepath":{
-		"prefix":["for fp", "for_fp"],
+		"prefix":["forfp", "for_fp"],
 		"body":[
 			"for filepath_$0 in tqdm(filepaths_$0):",
 			"\tbreak"
 		]
 	},
 	"for dict":{
-		"prefix":["for dict"],
+		"prefix":["fordict"],
 		"body":[
-			"for key,val in tqdm(${TM_SELECTED_TEXT}$0.items()):",
+			"for key, val in tqdm(${TM_SELECTED_TEXT}$0.items()):",
 			"\tbreak"
 		]
 	},
@@ -227,7 +233,7 @@
 	"glob": {
 		"prefix": ["glob.", "glob_", "gl_"],
 		"body": [
-			"glob.glob(f\"${TM_SELECTED_TEXT}$0\", recursive=True)"
+			"glob.glob(f\"${TM_SELECTED_TEXT}$0/**/*\", recursive=True)"
 		]
 	},
 	"str_format": {
@@ -245,13 +251,13 @@
 	"re.search": {
 		"prefix": "re_search",
 		"body": [
-			"re.search(\"$0\", ${TM_SELECTED_TEXT}$0).group()"
+			"re.search(\"[a-z]+\", ${TM_SELECTED_TEXT}$0).group()"
 		]
 	},
 	"re.findall": {
 		"prefix": "re_findall",
 		"body": [
-			"re.findall(\"$0\", ${TM_SELECTED_TEXT}$0)"
+			"re.findall(\"[a-z]+\", ${TM_SELECTED_TEXT}$0)"
 		]
 	},
 	"pbar": {

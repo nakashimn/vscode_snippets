@@ -5,5 +5,12 @@
 		"body": [
 			"corrcoef, p_value = stats.pearsonr(x=${TM_SELECTED_TEXT}$0, y=)"
 		]
+	},
+	"softmax": {
+		"scope": "python",
+		"prefix": ["sp.special.softmax", "sp_special_softmax"],
+		"body": [
+			"probs = special.softmax(${TM_SELECTED_TEXT}$0, axis=0)"
+		]
 	}
 }

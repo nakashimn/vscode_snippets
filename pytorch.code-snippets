@@ -222,7 +222,7 @@
 		"scope": "python",
 		"prefix": [".softmax"],
 		"body": [
-			".softmax(axis=1)"
+			".softmax(dim=1)"
 		]
 	},
 	".sigmoid": {
