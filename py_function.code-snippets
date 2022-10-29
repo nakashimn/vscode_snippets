@@ -52,13 +52,13 @@
 	},
 	"def read_config": {
 		"scope": "python",
-		"prefix": "def read_config",
+		"prefix": "def read_json",
 		"body": [
-			"def read_config(filepath)",
+			"def read_json(filepath):",
 			"\ttry:",
 			"\t\twith open(filepath, \"r\", encoding=\"utf-8\") as f:",
-			"\t\t\tconfig = json.load(f)",
-			"\t\treturn config",
+			"\t\t\tdata = json.load(f)",
+			"\t\treturn data",
 			"\texcept:",
 			"\t\tlogger.warning(traceback.format_exc())",
 			"\t\treturn None"

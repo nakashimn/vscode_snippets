@@ -137,7 +137,7 @@
 	"NullLogger": {
 		"prefix": "logger_(null)",
 		"body": [
-			"from logging import getLogger, DEBUG",
+			"from logging import getLogger, NullHandler",
 			"logger = getLogger(__name__)",
 			"handler = NullHandler()",
 			"logger.addHandler(handler)",
