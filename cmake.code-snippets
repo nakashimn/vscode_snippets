@@ -1,0 +1,59 @@
+{
+	// Startup
+	"cmake startup(executable)": {
+		"prefix": "cmake(executable)",
+		"body": [
+			"cmake_minimum_required(VERSION 3.10)",
+			"project(${1:project_name} VERSION 0.0.1)",
+			"",
+			"add_executable(\\${PROJECT_NAME\\} ${2:main.cpp})",
+			"target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_11)",
+			"",
+			"set(CPACK_PROJECT_NAME \\${PROJECT_NAME\\})",
+			"set(CPACK_PROJECT_VERSION \\${PROJECT_VERSION\\})",
+			"include(CPack)"
+		]
+	},
+	"cmake startup(library)": {
+		"prefix": "cmake(library)",
+		"body": [
+			"cmake_minimum_required(VERSION 3.10)",
+			"project(${1:project_name} VERSION 0.0.1)",
+			"",
+			"add_library(\\${PROJECT_NAME\\} ${2:main.cpp})",
+			"target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_11)",
+			"",
+			"set(CPACK_PROJECT_NAME \\${PROJECT_NAME\\})",
+			"set(CPACK_PROJECT_VERSION \\${PROJECT_VERSION\\})",
+			"include(CPack)"
+		]
+	},
+	"clean cmake cache": {
+		"prefix": "clean cmake cache",
+		"body": [
+			"# clean-all.cmake",
+			"set(cmake_generated ${CMAKE_BINARY_DIR}/CMakeCache.txt",
+			"\t\t\t\t\t${CMAKE_BINARY_DIR}/cmake_install.cmake",
+			"\t\t\t\t\t${CMAKE_BINARY_DIR}/Makefile",
+			"\t\t\t\t\t${CMAKE_BINARY_DIR}/CMakeFiles",
+			")",
+			"foreach(file ${cmake_generated})",
+			"\tif (EXISTS ${file})",
+			"\t\tfile(REMOVE_RECURSE ${file})",
+			"\tendif()",
+			"endforeach(file)"
+		]
+	},
+
+	// Procedure
+	"library": {
+		"prefix": "library",
+		"body": [
+			"add_library($0 $0.cpp)",
+			"target_compile_features($0 PRIVATE cxx_std_11)",
+			"target_link_libraries(\\${PROJECT_NAME\\} PRIVATE $0)"
+		]
+	}
+
+
+}
