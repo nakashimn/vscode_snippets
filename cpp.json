@@ -1,0 +1,212 @@
+{
+	// include library
+	"include default": {
+		"prefix": "include default",
+		"body": [
+			"#include <iostream>",
+			"#include <fstream>",
+			"#include <vector>",
+			"#include <string>",
+			"#include <algorithm>"
+		]
+	},
+
+	// type
+	"std::string": {
+		"prefix": "str",
+		"body": [
+			"std::string$0"
+		]
+	},
+	"std::vector": {
+		"prefix": "vector",
+		"body": [
+			"std::vector<$0>"
+		]
+	},
+
+	// abbreviation
+	"constexpr": {
+		"prefix": ["cnp", "const_"],
+		"body": [
+			"constexpr"
+		]
+	},
+	"nullptr": {
+		"prefix": ["nlp", "null_"],
+		"body": [
+			"nullptr"
+		]
+	},
+
+	// variables
+	"numeric_min": {
+		"prefix": "min_limit",
+		"body": [
+			"std::numeric_limits<$0>::min()"
+		]
+	},
+	"numeric_max": {
+		"prefix": "max_limit",
+		"body": [
+			"std::numeric_limits<$0>::max()"
+		]
+	},
+
+	// function
+	"main": {
+		"prefix": "main()",
+		"body": [
+			"int main(int argc, char *argv[]) {",
+			"}"
+		]
+	},
+	"read_txt": {
+		"prefix": "read_txt()",
+		"body": [
+			"std::string read_txt(const std::string filename) {",
+			"\tstd::ifstream ifs(filename);",
+			"",
+			"\tif (!ifs) {",
+			"\t\tstd::cout << \"can not open file.\" << std::endl;",
+			"\t\treturn \"\";",
+			"\t}",
+			"",
+			"\tstd::string text;",
+			"\tifs >> text;",
+			"\treturn text;",
+			"}"
+		]
+	},
+	"write_txt": {
+		"prefix": "write_txt()",
+		"body": [
+			"void write_txt(const std::string filename, const std::string text) {",
+			"\tstd::ofstream ofs(filename);",
+			"",
+			"\tif (!ofs) {",
+			"\t\tstd::cout << \"can not open file.\" << std::endl;",
+			"\t\treturn;",
+			"\t}",
+			"",
+			"\tofs << text << std::endl;",
+			"\treturn;",
+			"}"
+		]
+	},
+
+	// method
+	"debug message": {
+		"prefix": "debug_message",
+		"body": [
+			"std::cout << ${TM_SELECTED_TEXT}$0 << std::endl;"
+		]
+	},
+	"static cast": {
+		"prefix": "static cast",
+		"body": [
+			"static_cast<$0>(${TM_SELECTED_TEXT})"
+		]
+	},
+	"copy(vector)": {
+		"prefix": "copy(vector)",
+		"body": [
+			"${TM_SELECTED_TEXT}$1.resize($2.size());",
+			"copy($2.begin(), $2.end(), ${TM_SELECTED_TEXT}$1.begin());"
+		]
+	},
+
+	// class
+	"class(default)": {
+		"prefix": "class(default)",
+		"body": [
+			"class $0 {",
+			"public:",
+			"\t// Constructor/Destructor",
+			"\t$0(void);",
+			"\tvirtual ~$0(void);",
+			"",
+			"\t// Const",
+			"",
+			"\t// Variable",
+			"",
+			"\t// Function",
+			"",
+			"private:",
+			"",
+			"\t// Const",
+			"",
+			"\t// Variable",
+			"",
+			"\t// Function",
+			"",
+
+			"};"
+		]
+	},
+	"class(with args)": {
+		"prefix": "class(with args)",
+		"body": [
+			"class $0 {",
+			"public:",
+			"\t// Constructor/Destructor",
+			"\t$0();",
+			"\tvirtual ~$0(void);",
+			"\t$0() = delete;",
+			"",
+			"\t// Const",
+			"",
+			"\t// Variable",
+			"",
+			"\t// Function",
+			"",
+			"private:",
+			"",
+			"\t// Const",
+			"",
+			"\t// Variable",
+			"",
+			"\t// Function",
+			"",
+			"};"
+		]
+	},
+	"class(no copy)": {
+		"prefix": "class(no copy)",
+		"body": [
+			"class $0 {",
+			"public:",
+			"\t// Constructor/Destructor",
+			"\t$0(void);",
+			"\tvirtual ~$0(void);",
+			"\t$0(const $0&) = delete;",
+			"\t$0& operator=(const $0&) = delete;",
+			"\t$0($0&&) = delete;",
+			"\t$0& operator=(const $0&&) = delete;",
+			"",
+			"\t// Const",
+			"",
+			"\t// Variable",
+			"",
+			"\t// Function",
+			"",
+			"private:",
+			"",
+			"\t// Const",
+			"",
+			"\t// Variable",
+			"",
+			"\t// Function",
+			"",
+			"};"
+		]
+	},
+	"Constructor/Destructor": {
+		"prefix": "Constructor/Destructor",
+		"body": [
+			"$0::$0(void){};",
+			"$0::~$0(void){};"
+		]
+	}
+
+}
