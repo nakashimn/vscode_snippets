@@ -1,0 +1,102 @@
+{
+	"shebang": {
+		"prefix": ["bash", "/bin/bash", "#!"],
+		"body": [
+			"#! /bin/bash"
+		]
+	},
+	"for": {
+		"prefix": "for",
+		"body": [
+			"for i in $(seq $0); do",
+			"\t",
+			"done"
+		]
+	},
+	"for(array)": {
+		"prefix": ["for(array)"],
+		"body": [
+			"for x in ${array[@]}; do",
+			"\t",
+			"done"
+		]
+	},
+	"if": {
+		"prefix": "if",
+		"body": [
+			"if [ $0 ]; then",
+			"\t",
+			"fi"
+		]
+	},
+	"if/elif": {
+		"prefix": "if_elif",
+		"body": [
+			"if [ $0 ]; then",
+			"\t",
+			"elif [  ]; then",
+			"\t",
+			"else",
+			"\t",
+			"fi"
+		]
+	},
+	"not": {
+		"prefix": "not",
+		"body": [
+			"!"
+		]
+	},
+	"command": {
+		"prefix": ["$()", "command"],
+		"body": [
+			"$(${TM_SELECTED_TEXT}$0)"
+		]
+	},
+	"text_equal": {
+		"prefix": "=text",
+		"body": [
+			"[[ \"${${TM_SELECTED_TEXT}$0}\" == \\\"<TEXT>\\\" ]]"
+		]
+	},
+	"text_include": {
+		"prefix": "include",
+		"body": [
+			"[[ \"${${TM_SELECTED_TEXT}$0}\" == *<TEXT>* ]]"
+		]
+	},
+	"less than": {
+		"prefix": "<",
+		"body": [
+			"(( $0 <  ))"
+		]
+	},
+	"less than or equal to": {
+		"prefix": "<=",
+		"body": [
+			"(( $0 <=  ))"
+		]
+	},
+	"greater than": {
+		"prefix": ">",
+		"body": [
+			"(( $0 >  ))"
+		]
+	},
+	"greater than or equal to": {
+		"prefix": ">=",
+		"body": [
+			"(( $0 >=  ))"
+		]
+	},
+	"error_check": {
+		"prefix": ["if error", "if_error", "iferror"],
+		"body": [
+			"if ! $0; then",
+			"\techo [ERROR] ",
+			"\treturn 1",
+			"fi"
+		]
+	}
+
+}
