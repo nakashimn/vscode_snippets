@@ -102,6 +102,12 @@
 			"std::cout << ${TM_SELECTED_TEXT}$0 << std::endl;"
 		]
 	},
+	"printf": {
+		"prefix": "printf",
+		"body": [
+			"printf(\"%s\", $0);"
+		]
+	},
 	"static cast": {
 		"prefix": "static cast",
 		"body": [
