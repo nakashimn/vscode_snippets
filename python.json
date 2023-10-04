@@ -5,38 +5,19 @@
 	"import default packages":{
 		"prefix":"import default",
 		"body":[
-			"import os",
-			"import sys",
 			"import argparse",
-			"import pathlib",
-			"import glob",
 			"import datetime",
+			"import glob",
 			"import json",
-			"from tqdm import tqdm",
+			"import os",
+			"import pathlib",
+			"import sys",
+			"import traceback",
+			"",
+			"import matplotlib.pyplot as plt",
 			"import numpy as np",
 			"import pandas as pd",
-			"import matplotlib.pyplot as plt",
-			"import traceback",
-			""
-		]
-	},
-	"import data analysis packages": {
-		"prefix": "import data analysis",
-		"body": [
-			"import os",
-			"import sys",
-			"import argparse",
-			"import pathlib",
-			"import glob",
-			"import datetime",
-			"import json",
 			"from tqdm import tqdm",
-			"import numpy as np",
-			"import pandas as pd",
-			"from scipy import stats, special",
-			"import matplotlib.pyplot as plt",
-			"import seaborn as sns",
-			"import traceback",
 			""
 		]
 	},
@@ -95,9 +76,8 @@
 			"from torchvision import io",
 			"import pytorch_lightning as pl",
 			"from pytorch_lightning import LightningModule, LightningDataModule, callbacks",
-			"from pytorch_lightning.callbacks.early_stopping import EarlyStopping",
 			"from pytorch_lightning.loggers import MLFlowLogger",
-			"from sklearn.model_selection import StratifiedKFold"
+			"from sklearn import model_selection"
 		]
 	},
 	"import lightgbm": {
@@ -125,29 +105,29 @@
 	"Logger":{
 		"prefix":"logger_",
 		"body":[
-			"from logging import getLogger, StreamHandler, DEBUG",
-			"logger = getLogger(__name__)",
-			"handler = StreamHandler()",
+			"from logging import getLogger, Logger, Handler, StreamHandler, DEBUG",
+			"default_logger: Logger = getLogger(__name__)",
+			"handler: Handler = StreamHandler()",
 			"handler.setLevel(DEBUG)",
-			"logger.addHandler(handler)",
-			"logger.setLevel(DEBUG)",
-			"logger.propagate = False"
+			"default_logger.addHandler(handler)",
+			"default_logger.setLevel(DEBUG)",
+			"default_logger.propagate = False"
 		]
 	},
 	"NullLogger": {
 		"prefix": "logger_(null)",
 		"body": [
-			"from logging import getLogger, NullHandler",
-			"logger = getLogger(__name__)",
-			"handler = NullHandler()",
-			"logger.addHandler(handler)",
-			"logger.propagate = False"
+			"from logging import getLogger, Logger, Handler, NullHandler",
+			"null_logger: Logger = getLogger(__name__)",
+			"handler: Handler = NullHandler()",
+			"null_logger.addHandler(handler)",
+			"null_logger.propagate = False"
 		]
 	},
 	"StreamHandler": {
 		"prefix": "handler_(stream)",
 		"body": [
-			"stream_handler = StreamHandler()",
+			"stream_handler: Handler = StreamHandler()",
 			"stream_handler.setLevel(DEBUG)",
 			"logger.addHandler(stream_handler)"
 		]
@@ -155,7 +135,7 @@
 	"FlieHandler": {
 		"prefix": "handler_(file)",
 		"body": [
-			"file_handler = FileHandler($0)",
+			"file_handler: Handler = FileHandler($0)",
 			"file_handler.setLevel(DEBUG)",
 			"logger.addHandler(file_handler)"
 		]
@@ -163,7 +143,7 @@
 	"Logger(Class)": {
 		"prefix": "logger_(class)",
 		"body": [
-			"self.logger = cls_logger or default_logger"
+			"self.logger: Logger = cls_logger or default_logger"
 		]
 	},
 	"warning(traceback)": {
@@ -178,7 +158,7 @@
 	"Entrypoint":{
 		"prefix":["if __name__==\"__main__\"", "if_"],
 		"body":[
-			"if __name__==\"__main__\":",
+			"if __name__ == \"__main__\":",
 			"\t",
 		]
 	},
