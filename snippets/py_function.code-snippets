@@ -107,5 +107,15 @@
 			"def unique_table(df, col):",
 			"\treturn df.loc[~df[col].duplicated()].reset_index(drop=True)"
 		]
+	},
+	"def find_nearest_indices": {
+		"scope": "python",
+		"prefix": "def find_nearest_indices",
+		"body": [
+			"def find_nearest_indices(values, target):",
+			"\tdiff = np.abs(values - target)",
+			"\tmin_diff = np.min(diff)",
+			"\treturn np.where(diff == min_diff)[0]"
+		]
 	}
 }
