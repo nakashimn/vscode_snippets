@@ -36,7 +36,7 @@
 	},
 	"for idx": {
 		"scope": "python",
-		"prefix": "foridx",
+		"prefix": ["foridx", "for_idx"],
 		"body": [
 			"for idx in tqdm(${TM_SELECTED_TEXT}$0.index):",
 			"\tbreak"
