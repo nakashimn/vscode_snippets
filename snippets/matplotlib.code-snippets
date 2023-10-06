@@ -249,6 +249,7 @@
 			"\taxes.set_ylim(ylim)",
 			"\taxes.set_xlabel(xlabel)",
 			"\taxes.set_ylabel(ylabel)",
+			"\taxes.set_xticks(pos_x, x)",
 			"\taxes.set_axisbelow(True)",
 			"\tif grid is not None:",
 			"\t\taxes.grid(visible=True, axis=grid)",
