@@ -62,5 +62,12 @@
 		"body": [
 			"pd.DataFrame($0)"
 		]
+	},
+	"df_max_each_group": {
+		"scope": "python",
+		"prefix": "df_max_each_group",
+		"body": [
+			"df_max_each_group = df.loc[df.groupby(\"${1:group}\")[\"${2:col}\"].idxmax()].reset_index(drop=True)"
+		]
 	}
 }
