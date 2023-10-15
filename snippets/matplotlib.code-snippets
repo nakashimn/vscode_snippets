@@ -83,6 +83,43 @@
 			"], name=\"Office2007-2010\")"
 		]
 	},
+	"colormap(Office2007-2010_dim)": {
+		"scope": "python",
+		"prefix": "Colormap(Office2007-2010, dim)",
+		"body": [
+			"ListedColormap([",
+			"\t(0.212, 0.376, 0.573, 1.000),",
+			"\t(0.588, 0.212, 0.204, 1.000),",
+			"\t(0.463, 0.576, 0.235, 1.000),",
+			"\t(0.376, 0.286, 0.478, 1.000),",
+			"\t(0.192, 0.525, 0.608, 1.000),",
+			"\t(0.886, 0.420, 0.039, 1.000),",
+			"], name=\"Office2007-2010_dim\")"
+		]
+	},
+	"colormap(Office2007-2010_dark)": {
+		"scope": "python",
+		"prefix": "Colormap(Office2007-2010, dark)",
+		"body": [
+			"ListedColormap([",
+			"\t(0.141, 0.251, 0.384, 1.000),",
+			"\t(0.388, 0.145, 0.137, 1.000),",
+			"\t(0.310, 0.384, 0.157, 1.000),",
+			"\t(0.251, 0.192, 0.318, 1.000),",
+			"\t(0.129, 0.349, 0.404, 1.000),",
+			"\t(0.592, 0.278, 0.024, 1.000),",
+			"], name=\"Office2007-2010_dark\")"
+		]
+	},
+	"colormap(Grey)": {
+		"scope": "python",
+		"prefix": "Colormap(Grey)",
+		"body": [
+			"ListedColormap([",
+			"\t(v, v, v, 1.0) for v in np.arange(0.15, 1.0, 0.15)",
+			"], name=\"Grey\")"
+		]
+	},
 	"axes.set": {
 		"scope": "python",
 		"prefix": ["axes.set", "axes_set"],
@@ -92,7 +129,7 @@
 			"axes.set_xlabel($3)",
 			"axes.set_ylabel($4)",
 			"axes.set_axisbelow(True)",
-			"axes.grid(axis=\"y\")"
+			"axes.grid(visible=True, axis=\"y\")"
 		]
 	},
 	"axes.grid(y)": {
@@ -100,7 +137,7 @@
 		"prefix": "axes.grid.y",
 		"body": [
 			"axes.set_axisbelow(True)",
-			"axes.grid(axis=\"y\")"
+			"axes.grid(visible=True, axis=\"y\")"
 		]
 	},
 	"def draw_plot": {
@@ -185,7 +222,7 @@
 			"\taxes.set_ylabel(ylabel)",
 			"\taxes.set_axisbelow(True)",
 			"\tif grid is not None:",
-			"\t\taxes.grid(bisible=True, axis=grid)",
+			"\t\taxes.grid(visible=True, axis=grid)",
 			"\treturn axes"
 		]
 	},
@@ -244,12 +281,15 @@
 			"\tcolors_ = colors if colors is not None else [None for _ in ys]",
 			"\tfor i, y in enumerate(ys):",
 			"\t\tpos = pos_x - width * (1 - (2 * i + 1) / len(ys)) / 2",
-			"\t\taxes.bar(pos, y, width=width/len(ys), color=colors_[i], alpha=alpha, ec=ec, align=align, label=label)",
+			"\t\taxes.bar(pos, y, width=width/len(ys), color=colors_[i], alpha=alpha, ec=ec, label=label)",
 			"\taxes.set_xlim(xlim)",
 			"\taxes.set_ylim(ylim)",
 			"\taxes.set_xlabel(xlabel)",
 			"\taxes.set_ylabel(ylabel)",
-			"\taxes.set_xticks(pos_x, x)",
+			"\tif align == \"center\":",
+			"\t\taxes.set_xticks(pos_x, x)",
+			"\tif align == \"edge\":",
+			"\t\taxes.set_xticks(pos_x - 0.5, x)",
 			"\taxes.set_axisbelow(True)",
 			"\tif grid is not None:",
 			"\t\taxes.grid(visible=True, axis=grid)",
@@ -290,5 +330,49 @@
 			"\t\taxes.grid(visible=True, axis=grid)",
 			"\treturn axes"
 		]
-	}
+	},
+	"def draw_bar_multistack": {
+		"scope": "python",
+		"prefix": "def draw_bar_multistack",
+		"body": [
+			"def draw_bar_multistack(",
+			"\taxes,",
+			"\tx,",
+			"\tyss,",
+			"\twidth=0.8,",
+			"\txlim=None,",
+			"\tylim=None,",
+			"\txlabel=None,",
+			"\tylabel=None,",
+			"\tcolors=None,",
+			"\talpha=None,",
+			"\tec=None,",
+			"\talign=${1|\"center\",\"edge\"|},",
+			"\tgrid=\"y\",",
+			"\tlabel=None",
+			"):",
+			"\tpos_x = np.arange(len(x)) + 1",
+			"\tcolorss_ = colors if colors is not None else [[None for _ in ys] for ys in yss]",
+			"\tbottomss_ = np.cumsum(yss, axis=0)",
+			"\tfor i, ys in enumerate(yss):",
+			"\t\tcolors_ = colorss_[i]",
+			"\t\tbottoms_ = bottomss_[i-1] if i >= 1 else None",
+			"\t\tfor j, y in enumerate(ys):",
+			"\t\t\tpos = pos_x - width * (1 - (2 * j + 1) / len(ys)) / 2",
+			"\t\t\tbottom_ = bottoms_[j] if bottoms_ is not None else None",
+			"\t\t\taxes.bar(pos, y, width=width/len(ys), color=colors_[j], alpha=alpha, ec=ec, label=label, bottom=bottom_)",
+			"\taxes.set_xlim(xlim)",
+			"\taxes.set_ylim(ylim)",
+			"\taxes.set_xlabel(xlabel)",
+			"\taxes.set_ylabel(ylabel)",
+			"\tif align == \"center\":",
+			"\t\taxes.set_xticks(pos_x, x)",
+			"\tif align == \"edge\":",
+			"\t\taxes.set_xticks(pos_x - 0.5, x)",
+			"\taxes.set_axisbelow(True)",
+			"\tif grid is not None:",
+			"\t\taxes.grid(visible=True, axis=grid)",
+			"\treturn axes"
+		]
+	},
 }
