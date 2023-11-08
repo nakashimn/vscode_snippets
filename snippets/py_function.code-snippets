@@ -46,8 +46,7 @@
 			"\t\t\ttxt = f.read()",
 			"\t\treturn txt",
 			"\texcept:",
-			"\t\tlogger.warning(traceback.format_exc())",
-			"\t\treturn None"
+			"\t\traise"
 		]
 	},
 	"def read_json": {
@@ -60,8 +59,7 @@
 			"\t\t\tdata = json.load(f)",
 			"\t\treturn data",
 			"\texcept:",
-			"\t\tlogger.warning(traceback.format_exc())",
-			"\t\treturn None"
+			"\t\traise"
 		]
 	},
 	"def write_json": {
@@ -71,9 +69,9 @@
 			"def write_json(filepath, data):",
 			"\ttry:",
 			"\t\twith open(filepath, \"w\", encoding=\"utf-8\") as f:",
-			"\t\t\tjson.dump(data, f, indent=2, separators(\",\", \"\\n \"))",
+			"\t\t\tjson.dump(data, f, indent=2, separators=(\",\", \": \"))",
 			"\texcept:",
-			"\t\tlogger.warning(traceback.format_exc())"
+			"\t\traise"
 		]
 	},
 	"def extract_table": {
