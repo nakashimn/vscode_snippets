@@ -117,5 +117,39 @@
 			"\tmin_diff = np.min(diff)",
 			"\treturn np.where(diff == min_diff)[0]"
 		]
+	},
+	"def sigmoid": {
+		"scope": "python",
+		"prefix": "def sigmoid",
+		"body": [
+			"def sigmoid(x, gain=1.0, bias=0.0):",
+			"\treturn 1 / (1 + np.exp(-gain * (x - bias)))"
+		]
+	},
+	"def logit": {
+		"scope": "python",
+		"prefix": "def logit",
+		"body": [
+			"def logit(x, gain=1.0, bias=0.0):",
+			"\treturn np.log(gain * (x - bias)) - np.log(1 - gain * (x - bias))"
+		]
+	},
+	"def gamma_curve": {
+		"scope": "python",
+		"prefix": "def gamma_curve",
+		"body": [
+			"def gamma_curve(x, gamma=2.2):",
+			"\treturn x**gamma"
+		]
+	},
+	"def normalize": {
+		"scope": "python",
+		"prefix": "def normalize",
+		"body": [
+			"def normalize(x, x_min=None, x_max=None):",
+			"\tx_min_ = x_min or np.nanmin(x)",
+			"\tx_max_ = x_max or np.nanmax(x)",
+			"\treturn (x - x_min_) / (x_max_ - x_min_)"
+		]
 	}
 }
