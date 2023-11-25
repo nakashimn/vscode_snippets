@@ -66,7 +66,7 @@
 			"\t(1.000, 0.753, 0.000, 1.000),",
 			"\t(0.267, 0.447, 0.769, 1.000),",
 			"\t(0.439, 0.678, 0.275, 1.000),",
-			"], name=\"Office\")"
+			"], name=\"Office\").colors"
 		]
 	},
 	"colormap(Office2007-2010)": {
@@ -80,7 +80,7 @@
 			"\t(0.502, 0.392, 0.635, 1.000),",
 			"\t(0.294, 0.675, 0.776, 1.000),",
 			"\t(0.969, 0.588, 0.275, 1.000),",
-			"], name=\"Office2007-2010\")"
+			"], name=\"Office2007-2010\").colors"
 		]
 	},
 	"colormap(Office2007-2010_dim)": {
@@ -94,7 +94,7 @@
 			"\t(0.376, 0.286, 0.478, 1.000),",
 			"\t(0.192, 0.525, 0.608, 1.000),",
 			"\t(0.886, 0.420, 0.039, 1.000),",
-			"], name=\"Office2007-2010_dim\")"
+			"], name=\"Office2007-2010_dim\").colors"
 		]
 	},
 	"colormap(Office2007-2010_dark)": {
@@ -108,7 +108,7 @@
 			"\t(0.251, 0.192, 0.318, 1.000),",
 			"\t(0.129, 0.349, 0.404, 1.000),",
 			"\t(0.592, 0.278, 0.024, 1.000),",
-			"], name=\"Office2007-2010_dark\")"
+			"], name=\"Office2007-2010_dark\").colors"
 		]
 	},
 	"colormap(Grey)": {
@@ -117,7 +117,7 @@
 		"body": [
 			"ListedColormap([",
 			"\t(v, v, v, 1.0) for v in np.arange(0.15, 1.0, 0.15)",
-			"], name=\"Grey\")"
+			"], name=\"Grey\").colors"
 		]
 	},
 	"axes.set": {
@@ -155,7 +155,7 @@
 			"\tylabel=None,",
 			"\tcolor=None,",
 			"\talpha=None,",
-			"\tgrid=\"y\",",
+			"\tgrid=\"both\",",
 			"\tlabel=None",
 			"):",
 			"\taxes.plot(x, y, marker=marker, color=color, alpha=alpha, label=label)",
@@ -211,7 +211,7 @@
 			"\tylabel=None,",
 			"\tcolor=None,",
 			"\talpha=None,",
-			"\tec=\"gray\",",
+			"\tec=\"white\",",
 			"\tgrid=\"y\",",
 			"\tlabel=None",
 			"):",
@@ -234,14 +234,15 @@
 			"\taxes,",
 			"\tx,",
 			"\ty,",
-			"\twidth=0.8,",
+			"\twidth=1.0,",
 			"\txlim=None,",
 			"\tylim=None,",
 			"\txlabel=None,",
 			"\tylabel=None,",
+			"\txticklabels=None,",
 			"\tcolor=None,",
 			"\talpha=None,",
-			"\tec=None,",
+			"\tec=\"white\",",
 			"\talign=${1|\"center\",\"edge\"|},",
 			"\tgrid=\"y\",",
 			"\tlabel=None",
@@ -251,6 +252,10 @@
 			"\taxes.set_ylim(ylim)",
 			"\taxes.set_xlabel(xlabel)",
 			"\taxes.set_ylabel(ylabel)",
+			"\tif xticklabels is not None:",
+			"\t\taxes.set_xticks(np.arange(len(xticklabels)))",
+			"\t\taxes.set_xticklabels(xticklabels)",
+			"\taxes.tick_params(axis=\"x\", length=0)",
 			"\taxes.set_axisbelow(True)",
 			"\tif grid is not None:",
 			"\t\taxes.grid(visible=True, axis=grid)",
@@ -265,14 +270,15 @@
 			"\taxes,",
 			"\tx,",
 			"\tys,",
-			"\twidth=0.8,",
+			"\twidth=0.85,",
 			"\txlim=None,",
 			"\tylim=None,",
 			"\txlabel=None,",
 			"\tylabel=None,",
+			"\txticklabels=None,",
 			"\tcolors=None,",
 			"\talpha=None,",
-			"\tec=None,",
+			"\tec=\"white\",",
 			"\talign=${1|\"center\",\"edge\"|},",
 			"\tgrid=\"y\",",
 			"\tlabel=None",
@@ -286,6 +292,10 @@
 			"\taxes.set_ylim(ylim)",
 			"\taxes.set_xlabel(xlabel)",
 			"\taxes.set_ylabel(ylabel)",
+			"\tif xticklabels is not None:",
+			"\t\taxes.set_xticks(np.arange(len(xticklabels)))",
+			"\t\taxes.set_xticklabels(xticklabels)",
+			"\taxes.tick_params(axis=\"x\", length=0)",
 			"\tif align == \"center\":",
 			"\t\taxes.set_xticks(pos_x, x)",
 			"\tif align == \"edge\":",
@@ -304,14 +314,15 @@
 			"\taxes,",
 			"\tx,",
 			"\tys,",
-			"\twidth=0.8,",
+			"\twidth=1.0,",
 			"\txlim=None,",
 			"\tylim=None,",
 			"\txlabel=None,",
 			"\tylabel=None,",
+			"\txticklabels=None,",
 			"\tcolors=None,",
 			"\talpha=None,",
-			"\tec=None,",
+			"\tec=\"white\",",
 			"\talign=${1|\"center\",\"edge\"|},",
 			"\tgrid=\"y\",",
 			"\tlabel=None",
@@ -325,6 +336,10 @@
 			"\taxes.set_ylim(ylim)",
 			"\taxes.set_xlabel(xlabel)",
 			"\taxes.set_ylabel(ylabel)",
+			"\tif xticklabels is not None:",
+			"\t\taxes.set_xticks(np.arange(len(xticklabels)))",
+			"\t\taxes.set_xticklabels(xticklabels)",
+			"\taxes.tick_params(axis=\"x\", length=0)",
 			"\taxes.set_axisbelow(True)",
 			"\tif grid is not None:",
 			"\t\taxes.grid(visible=True, axis=grid)",
@@ -339,14 +354,15 @@
 			"\taxes,",
 			"\tx,",
 			"\tyss,",
-			"\twidth=0.8,",
+			"\twidth=0.85,",
 			"\txlim=None,",
 			"\tylim=None,",
 			"\txlabel=None,",
 			"\tylabel=None,",
+			"\txticklabels=None,",
 			"\tcolors=None,",
 			"\talpha=None,",
-			"\tec=None,",
+			"\tec=\"white\",",
 			"\talign=${1|\"center\",\"edge\"|},",
 			"\tgrid=\"y\",",
 			"\tlabel=None",
@@ -365,6 +381,10 @@
 			"\taxes.set_ylim(ylim)",
 			"\taxes.set_xlabel(xlabel)",
 			"\taxes.set_ylabel(ylabel)",
+			"\tif xticklabels is not None:",
+			"\t\taxes.set_xticks(np.arange(len(xticklabels)))",
+			"\t\taxes.set_xticklabels(xticklabels)",
+			"\taxes.tick_params(axis=\"x\", length=0)",
 			"\tif align == \"center\":",
 			"\t\taxes.set_xticks(pos_x, x)",
 			"\tif align == \"edge\":",
