@@ -2,7 +2,92 @@
 	"link": {
 		"prefix": "link",
 		"body": [
-			"[{$1:LinkText}](${$2:URL} \"{$3:Title}\")"
+			"[${1:LinkText}](${2:URL})"
+		]
+	},
+	"image": {
+		"prefix": "image",
+		"body": [
+			"![${1:LinkText}](${2:URL})"
+		]
+	},
+	"table": {
+		"prefix": "table",
+		"body": [
+			"|  x  |  y  |  z  |",
+			"| --- | --- | --- |",
+			"|     |     |     |"
+		]
+	},
+	// mermaid
+	"flowchart(mermaid)": {
+		"prefix": "flowchart",
+		"body": [
+			"```mermaid",
+			"flowchart LR",
+			"\tx[x] --> y(y) --> z[[z]]",
+			"```"
+		]
+	},
+	"sequence(mermaid)": {
+		"prefix": "sequence",
+		"body": [
+			"```mermaid",
+			"sequenceDiagram",
+			"\tA ->> +B: input",
+			"\tB -->> -A: output",
+			"```"
+		]
+	},
+	"ganttchart(mermaid)": {
+		"prefix": "ganttchart",
+		"body": [
+			"```mermaid",
+			"gantt",
+			"title Title",
+			"excludes weekends",
+			"dateFormat YYYY-MM-DD",
+			"axisFormat %m/%d",
+			"",
+			"section Section",
+			"\tTaskA               : done  , TaskA, 2024-01-01, 2024-01-05",
+			"\tTaskB               : active, TaskB, 2024-01-05, 2024-01-15",
+			"\tTaskC               : crit  , TaskC, 2024-01-15, 2024-01-30",
+			"```"
+		]
+	},
+	// marp
+	"marp template": {
+		"prefix": "marp",
+		"body": [
+			"---",
+			"marp: true",
+			"theme: gaia",
+			"backgroundColor: white",
+			"color: #222222",
+			"paginate: true",
+			"size: 16:9",
+			"---",
+			"<!--",
+			"_paginate: skip",
+			"-->",
+			"",
+			"# title",
+			"",
+			"---",
+			"",
+			"# slide1",
+			"",
+			"---",
+			"",
+			"# slide2",
+			"",
+			"---",
+			"<!--",
+			"_paginate: skip",
+			"-->",
+			"",
+			"# end"
 		]
 	}
 }
