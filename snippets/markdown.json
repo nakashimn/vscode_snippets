@@ -20,13 +20,36 @@
 		]
 	},
 	// mermaid
+	"mermaid": {
+		"prefix": "mermaid",
+		"body": [
+			"```mermaid",
+			"$0",
+			"```"
+		]
+	},
+	"theme(mermaid)": {
+		"prefix": "mermaid_theme",
+		"body": [
+			"%%{init:{'theme':'base','themeVariables':{'primaryColor':'#ececff', 'tertiaryColor':'#fafafa'}}}%%"
+		]
+	},
 	"flowchart(mermaid)": {
 		"prefix": "flowchart",
 		"body": [
 			"```mermaid",
 			"flowchart LR",
-			"\tx[x] --> y(y) --> z[[z]]",
+			"\t${1:x[x] --> y(y) --> z[[z]]}",
 			"```"
+		]
+	},
+	"flowchart(mermaid/html)": {
+		"prefix": "flowchart_html",
+		"body": [
+			"<div class=\"mermaid\">",
+			"flowchart LR",
+			"\t${1:x[x] --> y(y) --> z[[z]]}",
+			"</div>"
 		]
 	},
 	"sequence(mermaid)": {
@@ -34,9 +57,19 @@
 		"body": [
 			"```mermaid",
 			"sequenceDiagram",
-			"\tA ->> +B: input",
-			"\tB -->> -A: output",
+			"\t${1:A ->> +B: input",
+			"\tB -->> -A: output}",
 			"```"
+		]
+	},
+	"sequence(mermaid/html)": {
+		"prefix": "sequence_html",
+		"body": [
+			"<div class=\"mermaid\">",
+			"sequenceDiagram",
+			"\t${1:A ->> +B: input",
+			"\tB -->> -A: output}",
+			"</div>"
 		]
 	},
 	"ganttchart(mermaid)": {
@@ -44,16 +77,35 @@
 		"body": [
 			"```mermaid",
 			"gantt",
-			"title Title",
+			"title ${1:Title}",
 			"excludes weekends",
 			"dateFormat YYYY-MM-DD",
 			"axisFormat %m/%d",
 			"",
 			"section Section",
-			"\tTaskA               : done  , TaskA, 2024-01-01, 2024-01-05",
-			"\tTaskB               : active, TaskB, 2024-01-05, 2024-01-15",
-			"\tTaskC               : crit  , TaskC, 2024-01-15, 2024-01-30",
+			"\tTaskA               : done     , TaskA, 2024-01-01, 2024-01-05",
+			"\tTaskB               : active   , TaskB, 2024-01-05, 2024-01-15",
+			"\tTaskC               : crit     , TaskC, 2024-01-15, 2024-01-30",
+			"\tTaskX               : milestone, TaskX, 2024-01-31, 2024-01-31",
 			"```"
+		]
+	},
+	"ganttchart(mermaid/html)": {
+		"prefix": "ganttchart_html",
+		"body": [
+			"<div class=\"mermaid\">",
+			"gantt",
+			"title ${1:Title}",
+			"excludes weekends",
+			"dateFormat YYYY-MM-DD",
+			"axisFormat %m/%d",
+			"",
+			"section Section",
+			"\tTaskA               : done     , TaskA, 2024-01-01, 2024-01-05",
+			"\tTaskB               : active   , TaskB, 2024-01-05, 2024-01-15",
+			"\tTaskC               : crit     , TaskC, 2024-01-15, 2024-01-30",
+			"\tTaskX               : milestone, TaskX, 2024-01-31, 2024-01-31",
+			"</div>"
 		]
 	},
 	// marp
@@ -62,13 +114,12 @@
 		"body": [
 			"---",
 			"marp: true",
-			"theme: gaia",
-			"backgroundColor: white",
-			"color: #222222",
+			"theme: sample",
 			"paginate: true",
 			"size: 16:9",
 			"---",
 			"<!--",
+			"_class: title",
 			"_paginate: skip",
 			"-->",
 			"",
@@ -76,6 +127,9 @@
 			"",
 			"---",
 			"",
+			"<!--",
+			"class: slide",
+			"-->",
 			"# slide1",
 			"",
 			"---",
@@ -84,6 +138,7 @@
 			"",
 			"---",
 			"<!--",
+			"_class: end",
 			"_paginate: skip",
 			"-->",
 			"",
