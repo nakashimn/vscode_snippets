@@ -1,0 +1,23 @@
+{
+	"requests.get": {
+		"scope": "python",
+		"prefix": "req_get",
+		"body": [
+			"r: Response = requests.get(f\"${1:URL}\")",
+			"ret: dict[str, Any] = json.loads(r.text)"
+		]
+	},
+	"requests.post": {
+		"scope": "python",
+		"prefix": "req_post",
+		"body": [
+			"r: Response = requests.post(",
+			"\tf\"${1:URL}\",",
+			"\tjson={",
+			"\t\t\"id\": 0",
+			"\t}",
+			")",
+			"ret: dict[str, Any] = json.loads(r.text)"
+		]
+	},
+}
