@@ -1,0 +1,55 @@
+{
+	"SQL_Engine": {
+		"scope": "python",
+		"prefix": "sql_engine",
+		"body": [
+			"SqlEngine: Engine = sqlalchemy.create_engine($0)"
+		]
+	},
+	"SQL_Session": {
+		"scope": "python",
+		"prefix": "sql_session",
+		"body": [
+			"session: Session = sessionmaker(SqlEngine)()"
+		]
+	},
+	"SQL_ORMClass": {
+		"scope": "python",
+		"prefix": "sql_ormclass",
+		"body": [
+			"Base = declarative_base()",
+			"class ORMClass(Base):",
+			"\t__tablename__ = $0",
+			"\tid: Column = Column(Integer, primary_key=True)"
+		]
+	},
+	"SQL_create_table": {
+		"scope": "python",
+		"prefix": "sql_create_table",
+		"body": [
+			"Base.metadata.create_all(SqlEngine)"
+		]
+	},
+	"SQL_Insert": {
+		"scope": "python",
+		"prefix": "sql_insert",
+		"body": [
+			"session.add($0)",
+			"session.commit()"
+		]
+	},
+	"SQL_Select": {
+		"scope": "python",
+		"prefix": "sql_select",
+		"body": [
+			"session.query(${1:ORMClass}).all()"
+		]
+	},
+	"SQL_Select(where)": {
+		"scope": "python",
+		"prefix": "sql_select(where)",
+		"body": [
+			"session.query(${1:ORMClass}).filter().all()"
+		]
+	},
+}

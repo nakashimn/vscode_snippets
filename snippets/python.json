@@ -93,8 +93,20 @@
 			"from timm import create_model"
 		]
 	},
+	"import sqlalchemy": {
+		"prefix": "import sqlalchemy",
+		"body": [
+			"import sqlalchemy",
+			"from sqlalchemy.engine.base import Engine",
+			"from sqlalchemy.ext.declarative import declarative_base",
+			"from sqlalchemy.schema import Column",
+			"from sqlalchemy.types import Integer, String",
+			"from sqlalchemy.orm import sessionmaker",
+			"from sqlalchemy.orm.session import Session"
+		]
+	},
 	"import pandas.testing": {
-		"prefix": "pdtest",
+		"prefix": "import pdtest",
 		"body": [
 			"import pandas.testing as pdtest"
 		]
