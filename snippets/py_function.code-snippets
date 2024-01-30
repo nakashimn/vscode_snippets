@@ -149,5 +149,23 @@
 			"\tx_max_ = x_max or np.nanmax(x)",
 			"\treturn (x - x_min_) / (x_max_ - x_min_)"
 		]
+	},
+	"def encode_img_to_base64": {
+		"scope": "python",
+		"prefix": "def encode_img_to_base64",
+		"body": [
+			"def encode_img_to_base64(img: NDArray, ext: str = \".jpg\") -> str:",
+			"\t_, img_bytes = cv2.imencode(ext, img)",
+			"\treturn base64.b64encode(img_bytes.tobytes()).decode(\"utf-8\")"
+		]
+	},
+	"def decode_base64_to_img": {
+		"scope": "python",
+		"prefix": "def decode_base64_to_img",
+		"body": [
+			"def decode_base64_to_img(img_base64: str) -> NDArray:",
+			"\timg_bytes: bytes = base64.b64decode(img_base64.encode(\"utf-8\"))",
+			"\treturn cv2.imdecode(np.frombuffer(img_bytes, dtype=np.uint8), cv2.IMREAD_COLOR)"
+		]
 	}
 }
