@@ -2,13 +2,18 @@
 	"vscode_extentions": {
 		"prefix": "vscode_extentions",
 		"body": [
-			"\"extensions\": [",
-			"\t\"ms-python.python\",",
-			"\t\"ms-python.vscode-pylance\",",
-			"\t\"donjayamanne.githistory\",",
-			"\t\"eamodio.gitlens\",",
-			"\t\"ryuta46.multi-command\"",
-			"]"
+			"\"customizations\": {",
+			"\t\"vscode\": {",
+			"\t\t\"extensions\": [",
+			"\t\t\t\"ms-python.python\",",
+			"\t\t\t\"ms-python.vscode-pylance\",",
+			"\t\t\t\"ms-toolsai.jupyter\",",
+			"\t\t\t\"donjayamanne.githistory\",",
+			"\t\t\t\"eamodio.gitlens\",",
+			"\t\t\t\"ryuta46.multi-command\"",
+			"\t\t]",
+			"\t}",
+			"}"
 		]
 	}
 }
