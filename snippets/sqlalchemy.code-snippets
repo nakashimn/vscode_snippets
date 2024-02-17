@@ -17,10 +17,12 @@
 		"scope": "python",
 		"prefix": "sql_ormclass",
 		"body": [
-			"Base = declarative_base()",
-			"class ORMClass(Base):",
+			"Base: DeclarativeMeta = declarative_base()",
+			"class ORM(Base):",
 			"\t__tablename__ = $0",
-			"\tid: Column = Column(Integer, primary_key=True)"
+			"\tid: Mapped[int] = Column(Integer, primary_key=True, unique=True)",
+			"\tname: Mapped[str] = Column(String, nullable=False)",
+			"\tcreated_at: Mapped[datetime.date] = Column(Date)"
 		]
 	},
 	"SQL_create_table": {
