@@ -100,8 +100,8 @@
 			"from sqlalchemy.engine.base import Engine",
 			"from sqlalchemy.ext.declarative import declarative_base",
 			"from sqlalchemy.schema import Column",
-			"from sqlalchemy.types import Integer, String",
-			"from sqlalchemy.orm import sessionmaker",
+			"from sqlalchemy.types import Boolean, Date, Integer, String",
+			"from sqlalchemy.orm import sessionmaker, DeclarativeMeta, Mapped",
 			"from sqlalchemy.orm.session import Session"
 		]
 	},
@@ -264,6 +264,15 @@
 			"pbar.set_postfix_str(f\"$0\")"
 		]
 	},
+
+	// TypeAlias
+	"DictElement": {
+		"prefix": "DictElement(TypeAlias)",
+		"body": [
+			"from typing import TypeAlias",
+			"DictElement: TypeAlias = bool | int | float | str | datetime.date | None"
+		]
+	}
 
 	// abbr
 
