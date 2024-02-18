@@ -13,12 +13,12 @@
 			"session: Session = sessionmaker(SqlEngine)()"
 		]
 	},
-	"SQL_ORMClass": {
+	"SQL_ORMapper": {
 		"scope": "python",
-		"prefix": "sql_ormclass",
+		"prefix": "sql_ormapper",
 		"body": [
 			"Base: DeclarativeMeta = declarative_base()",
-			"class ORM(Base):",
+			"class ORMapper(Base):",
 			"\t__tablename__ = $0",
 			"\tid: Mapped[int] = Column(Integer, primary_key=True, unique=True)",
 			"\tname: Mapped[str] = Column(String, nullable=False)",
