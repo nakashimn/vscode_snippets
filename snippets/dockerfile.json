@@ -5,25 +5,6 @@
 		"body": [
 			"FROM ubuntu:22.04",
 			"",
-			"WORKDIR /workspace",
-			"",
-			"RUN apt-get update \\",
-			"\t&& DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \\",
-			"\tgit \\",
-			"\ttzdata \\",
-			"\t&& apt-get clean \\",
-			"\t&& rm -rf /var/lib/apt/lists/*",
-			"",
-			"RUN git config --global --add safe.directory /workspace"
-		]
-	},
-	"ubuntu20": {
-		"prefix": "ubuntu20.04",
-		"body": [
-			"FROM ubuntu:20.04",
-			"",
-			"WORKDIR /workspace",
-			"",
 			"RUN apt-get update \\",
 			"\t&& DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \\",
 			"\tgit \\",
@@ -52,9 +33,9 @@
 		]
 	},
 	"python": {
-		"prefix": "python3.9",
+		"prefix": "python3.12",
 		"body": [
-			"FROM python:3.9",
+			"FROM python:3.12",
 			"",
 			"ADD requirements.txt /",
 			"RUN pip install --no-cache-dir -r requirements.txt"
