@@ -47,6 +47,15 @@
 			"!"
 		]
 	},
+	"if not exist": {
+		"prefix": "if_not_exist",
+		"body": [
+			"if ! [ -e $0 ]; then",
+			"\techo -e \"\\e[31m[Error] <file> doesn't exist.\\e[0m\"",
+			"\texit",
+			"fi"
+		]
+	},
 	"command": {
 		"prefix": ["$()", "command"],
 		"body": [
@@ -63,6 +72,12 @@
 		"prefix": "include",
 		"body": [
 			"[[ \"${${TM_SELECTED_TEXT}$0}\" == *<TEXT>* ]]"
+		]
+	},
+	"text_empty": {
+		"prefix": "empty",
+		"body": [
+			"[ -z \"${${TM_SELECTED_TEXT}$0}\" ]"
 		]
 	},
 	"less than": {
@@ -93,9 +108,15 @@
 		"prefix": ["if error", "if_error", "iferror"],
 		"body": [
 			"if ! $0; then",
-			"\techo [ERROR] ",
+			"\techo -e \"\\e[31m[ERROR]\\e[0m\" ",
 			"\treturn 1",
 			"fi"
+		]
+	},
+	"echo red": {
+		"prefix": "echo(red)",
+		"body": [
+			"echo -e \"\\e[31m<TEXT>\\e[0m\""
 		]
 	}
 
